@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-12">
                 <p>
-                    <img src="{{assets('images/footer/footer_phone.webp')}}" alt="">Đặt hàng: 1800 6936
+                    <img src="{{ asset('images/footer/footer_phone.webp') }}" alt="">Đặt hàng: 1800 6936
                 </p>
                 <p>
-                    <img src="{{assets('images/footer/footer_vitri.webp')}}" alt="">Liên hệ
+                    <img src="{{ asset('images/footer/footer_vitri.webp') }}" alt="">Liên hệ
                 </p>
                 <p>
                     Tầng 3-4 Hub Building 195/10E Điện Biên Phủ, P.15 , Q.Bình Thạnh, TP.Hồ Chí Minh
@@ -15,16 +15,16 @@
             <div class="col-lg-3 col-md-6 col-12">
                 <div class="info">
                     <a href="./sinhvien.html">
-                        <img class="logo" src="{{assets('images/footer/logo.jpg')}}" alt="">
-                        <img class="img" src="{{assets('images/footer/thecoffeehouse.jpg')}}" alt="">
+                        <img class="logo" src="{{ asset('images/footer/logo.jpg') }}" alt="">
+                        <img class="img" src="{{ asset('images/footer/thecoffeehouse.jpg') }}" alt="">
                     </a>
                 </div>
                 <div>
                     <a href="">
-                        <img class="icon" src="{{assets('images/footer/icon-ig.svg')}}" alt="">
+                        <img class="icon" src="{{ asset('images/footer/icon-ig.svg') }}" alt="">
                     </a>
                     <a href="https://www.facebook.com/The.Coffee.House.2014/">
-                        <img class="icon" src="{{assets('images/footer/icon-facebook.svg')}}" alt="">
+                        <img class="icon" src="{{ asset('images/footer/icon-facebook.svg') }}" alt="">
                     </a>
                 </div>
             </div>
