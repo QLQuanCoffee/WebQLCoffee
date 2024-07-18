@@ -14,7 +14,7 @@ class OrderDetail extends Model
         'quantity',
         'topping',
         'price',
-        'user_id',
+        'product_id',
         'order_id',
     ];
 }

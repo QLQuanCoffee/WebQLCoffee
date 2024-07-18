@@ -12,6 +12,7 @@ class DetailCartTopping extends Model
     protected $fillable=[
         'id',
         'topping_id',
-        'cart_id'
+        'cart_id',
+        'quantity'
     ];
 }
