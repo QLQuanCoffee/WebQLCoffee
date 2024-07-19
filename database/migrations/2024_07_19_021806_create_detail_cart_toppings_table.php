@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('detail_cart_toppings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('phone')->nullable();
-            $table->string('password');
-            $table->string('role');
-            $table->text('address');
-            $table->rememberToken();
+            $table->integer('quantity');
+            $table->foreignId('cart_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('topping_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('detail_cart_toppings');
     }
 };
