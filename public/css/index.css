@@ -179,7 +179,6 @@ li {
 /* Banner */
 #banner{
     margin-top: 7px;
-    max-width: 1400px;
     position: relative;
     transform: translateY(-58px);
 }
