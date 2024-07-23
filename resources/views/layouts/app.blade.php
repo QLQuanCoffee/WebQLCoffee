@@ -9,7 +9,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <!-- Thêm Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/responesive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/open-iconic-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
 
 </head>
 

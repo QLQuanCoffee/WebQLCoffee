@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-4 col-4">
                 <a href="./sinhvien.html">
                     <div class="info">
-                        <img src="{{ asset ('images/navbar/icon_vitri.webp')}}" alt="">
+                        <img src="{{ asset('images/navbar/icon_vitri.webp') }}" alt="">
                         <p>154 Cửa hàng khắp cả nước</p>
                     </div>
                 </a>
@@ -12,7 +12,7 @@
             <div class="col-lg-3 col-md-4 col-4">
                 <a href="./sinhvien.html">
                     <div class="info">
-                        <img src="{{asset('images/navbar/phone.webp')}}" alt="">
+                        <img src="{{ asset('images/navbar/phone.webp') }}" alt="">
                         <p>Đặt hàng: 1800.6936</p>
                     </div>
                 </a>
@@ -20,7 +20,7 @@
             <div class="col-lg-3 col-md-4 col-4">
                 <a href="./sinhvien.html">
                     <div class="info">
-                        <img src="{{asset('images/navbar/ship.webp')}}" alt="">
+                        <img src="{{ asset('images/navbar/ship.webp') }}" alt="">
                         <p>Freeship từ 50.000vnd</p>
                     </div>
                 </a>
@@ -46,7 +46,7 @@
             <div class="col-lg-3 col-md-12 col-12">
                 <a class="link-logo" href="./index.html">
                     <div class="header_logo">
-                        <img src="{{asset('images/container/logo.png')}}" alt="">
+                        <img src="{{ asset('images/container/logo.png') }}" alt="">
                     </div>
                 </a>
             </div>
@@ -150,7 +150,7 @@
                             </ul>
                         </li>
                         <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
-                        <li><a href="./menu.html">Cửa hàng</a></li>
+                        <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                 <li><a href="./menu.html">Menu</a></li>
                 <li><a href="./menu.html">Chuyện Nhà</a></li>
                 <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
-                <li><a href="./menu.html">Cửa hàng</a></li>
+                <li><a href="{{ asset('shop.blade.php') }}">Cửa hàng</a></li>
             </ul>
         </div>
     </div>

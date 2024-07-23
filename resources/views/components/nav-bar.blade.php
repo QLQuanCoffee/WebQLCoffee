@@ -126,7 +126,11 @@
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Chuyện Nhà</a></li>
                 <li><a href="#">Cảm hứng CloudFee</a></li>
+<<<<<<< Updated upstream
                 <li><a href="#">Cửa hàng</a></li>
+=======
+                <li><a href="{{ asset('shop.blade.php') }}">Cửa hàng</a></li>
+>>>>>>> Stashed changes
             </ul>
         </div>
     </div>
