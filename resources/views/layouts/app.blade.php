@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/responesive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/open-iconic-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
 </head>
 
 <body>
