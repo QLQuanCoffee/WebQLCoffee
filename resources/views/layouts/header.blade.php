@@ -168,7 +168,7 @@
                 <li><a href="./menu.html">Menu</a></li>
                 <li><a href="./menu.html">Chuyện Nhà</a></li>
                 <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
-                <li><a href="./menu.html">Cửa hàng</a></li>
+                <li><a href="{{ asset('shop.blade.php') }}">Cửa hàng</a></li>
             </ul>
         </div>
     </div>
