@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\ProductInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
     }
     public function index(){
         $products=$this->product->getQuantityProduct(6);
-        return view('index', compact('products'));
+        return view('index',compact('products'));
     }
 
 }
