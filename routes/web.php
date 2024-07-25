@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
+Route::get('/product', function () {
+    return view('product');
+})->name('product');
