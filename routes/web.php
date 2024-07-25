@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ToppingController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +28,3 @@ Route::get('/', function () {
 Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
-Route::get('/product', function () {
-    return view('product');
-})->name('product');

@@ -6,6 +6,9 @@ class ProductRepository implements  ProductInterface{
     public function getAllProducts(){
         return Product::get();
     }
+    public function getQuantityProduct($num){
+        return Product::limit($num)->get();
+    }
     public function getProduct($id){
         return Product::find($id);
     }
