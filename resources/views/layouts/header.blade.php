@@ -27,12 +27,21 @@
             </div>
             <div class="link col-lg-3 col-md-12 col-12">
                 <ul>
-                    <li>
-                        <a href="./dangnhap.html">Đăng nhập</a>|
-                    </li>
-                    <li>
-                        <a href="./dangki.html">Đăng ký</a>
-                    </li>
+                    @if (!empty(session()->get('name')))
+                        <li>
+                            <a href="{{ route('logout') }}">{{ session()->get('name') }}</a>|
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}">Đăng xuất</a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('login') }}">Đăng nhập</a>|
+                        </li>
+                        <li>
+                            <a href="{{ route('register') }}">Đăng ký</a>
+                        </li>
+                    @endif
                 </ul>
 
             </div>

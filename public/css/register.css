@@ -1,0 +1,73 @@
+#form {
+    min-height: 500px;
+}
+
+#form .row .row {
+    padding: 12px 0;
+}
+#form .list {
+    background-color: rgb(202, 202, 202);
+}
+
+#form .list a{
+    color: #00000099;
+}
+
+#form .list li {
+    display: inline;
+    padding: 0 8px;
+}
+
+#form .list ul{
+    padding: 12px;
+}
+#form img {
+    width: 100%;
+}
+
+#form .form-group {
+    margin-bottom: 12px;
+}
+
+#form .form-group input {
+    padding: 4px 12px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+#form .form-btn button{
+    width: 100%;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: #E57905;
+    color: white;
+}
+
+#form h3 {
+    margin: 0;
+    padding-left: 12px;
+}
+
+#form h4,
+#form h3 {
+    padding-top: 12px;
+}
+
+#form .flex{
+    display: flex;
+    align-items: center;
+    padding: 24px 0;
+}
+
+#form .cut{
+    height: 1px;
+    width: 100%;
+    background-color: #dbdbdb;
+}
+
+#form .flex p {
+    margin: 0;
+    padding: 0 12px;
+    color: rgb(136, 136, 136);
+}
