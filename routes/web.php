@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 //Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
