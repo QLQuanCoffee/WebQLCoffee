@@ -17,4 +17,8 @@ class Product extends Model
         'description',
         'type_id'
     ];
+    public function price_format($price)
+    {
+        return number_format($price, 0, ',', '.') . 'vnđ';
+    }
 }

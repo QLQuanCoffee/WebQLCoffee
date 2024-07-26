@@ -15,4 +15,10 @@ class DetailCartTopping extends Model
         'cart_id',
         'quantity'
     ];
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
+    public function topping(){
+        return $this->belongsTo(Topping::class);
+    }
 }

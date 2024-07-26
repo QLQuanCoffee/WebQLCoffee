@@ -9,6 +9,9 @@ class DetailToppingProductRepository implements  DetailToppingProductInterface{
     public function getDetailToppingProduct($id){
         return DetailToppingProduct::find($id);
     }
+    public function getDetailByProduct($idProduct){
+        return DetailToppingProduct::where('product_id',$idProduct)->get();
+    }
     public function insertDetailToppingProduct($data){
         DetailToppingProduct::create($data);
     }

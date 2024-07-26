@@ -9,6 +9,9 @@ class DetailCartToppingRepository implements  DetailCartToppingInterface{
     public function getDetailCartTopping($id){
         return DetailCartTopping::find($id);
     }
+    public function getDetailByCart($idCart){
+        return DetailCartTopping::where('cart_id',$idCart)->get();
+    }
     public function insertDetailCartTopping($data){
         DetailCartTopping::create($data);
     }

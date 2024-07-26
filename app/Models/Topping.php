@@ -14,4 +14,8 @@ class Topping extends Model
         'name',
         'price'
     ];
+    public function price_format($price)
+    {
+        return number_format($price, 0, ',', '.') . ' đ';
+    }
 }

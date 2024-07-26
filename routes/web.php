@@ -44,6 +44,7 @@ Route::get('/shops', [ShopController::class, 'shop'])->name('shop');
 Route::get('/detail-shop/{id}', [ShopController::class, 'detail'])->name('detail');
 
 
+
 //ADMIN
 
 Route::prefix('admin')->name('admin.')->group(function () {

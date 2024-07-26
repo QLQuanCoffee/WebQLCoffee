@@ -15,4 +15,10 @@ class DetailToppingProduct extends Model
         'topping_id',
         'quantity'
     ];
+    public function topping(){
+        return $this->belongsTo(Topping::class);
+    }
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }
