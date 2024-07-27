@@ -18,12 +18,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="big">
-                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
+                        <div class="w-100">
+                            <img class="img-product" src="{{ asset('images/products/' . $product->photo) }}" alt="">
                         </div>
-                        <div class="mini">
-                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
-                        </div>
+
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <h2>{{ $product->name }}</h2>
@@ -31,17 +29,17 @@
                         <br>
                         <p style="font-size: 1.5rem">Chọn size(bắt buộc)</p>
                         <div class="row option-size">
-                            <div class="d-flex align-items-center p-2 m-2 size">
+                            <div class="d-flex col-lg-3 align-items-center p-2 m-2 size">
                                 <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                     style="max-height: 15px; max-width: 15px;" alt="">
                                 <p class="mb-0 ms-2">Nhỏ + 0đ</p>
                             </div>
-                            <div class="d-flex align-items-center p-2 m-2 size">
+                            <div class="d-flex col-lg-4 align-items-center p-2 m-2 size">
                                 <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                     style="max-height: 20px; max-width: 20px;" alt="">
                                 <p class="mb-0 ms-2">Vừa + 6000đ</p>
                             </div>
-                            <div class="d-flex align-items-center p-2 m-2 size">
+                            <div class="d-flex col-lg-4 align-items-center p-2 m-2 size">
                                 <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                     style="max-height: 30px; max-width: 30px;" alt="">
                                 <p class="mb-0 ms-2">Lớn + 10000đ</p>
@@ -51,7 +49,7 @@
                             <p class="title">Topping</p>
                             <div class="option-topping">
                                 @foreach ($toppings as $topping)
-                                    <div class="topping-item">{{ $topping->topping->name }} + {{ $topping->topping->price_format($topping->topping->price) }}
+                                    <div class="topping-item">{{ $topping->topping->name }} + {{ $topping->topping->price }}
                                     </div>
                                 @endforeach
                             </div>
@@ -96,30 +94,5 @@
                 this.classList.add("choose");
             });
         });
-
-
-        const $ = document.querySelector.bind(document);
-            const $$ = document.querySelectorAll.bind(document);
-
-            const tabs = $$(".size-item");
-            const panes = $$(".topping-item");
-
-            tabs.forEach((tab, index) => {
-                tab.onclick = function () {
-                    $(".size-item.active").classList.remove("active");
-                    this.classList.add("active");
-                };
-            });
-            panes.forEach((pane, index) => {
-                pane.onclick = function () {
-                    if(pane.classList.contains("active")){
-                        pane.classList.remove("active");
-                    }
-                    else
-                    {
-                        this.classList.add("active");
-                    }
-                };
-            });
     </script>
 @endsection

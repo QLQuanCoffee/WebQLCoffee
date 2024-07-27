@@ -99,7 +99,7 @@
     padding: 12px;
     margin-bottom: 24px;
 }
-#main-info .row img {
+#main-info .row .img-product {
     width: 100%;
     border-radius: 10px;
     box-shadow: 1px 1px 6px 1px #a1a1a1;
