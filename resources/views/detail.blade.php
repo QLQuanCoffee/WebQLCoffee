@@ -80,7 +80,7 @@
                                 <a href="{{ route('detail', $product->id) }}"><img
                                         src="{{ asset('images/products/', $product->photo) }}" alt=""></a>
                                 <h4><a href="{{ route('detail', $product->id) }}">{{ $product->name }}</a></h4>
-                                <p>{{ $product->price }}</p>
+                                <p>{{ $product->price_format($product->price) }}</p>
                             </div>
                         @endforeach
                     @endif

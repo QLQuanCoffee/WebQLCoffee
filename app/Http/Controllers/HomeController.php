@@ -14,8 +14,8 @@ class HomeController extends Controller
     }
     public function index(){
         $products=$this->product->getQuantityProduct(0);
-        // return view('index',compact('products'));
-        return view('index');
+        return view('index',compact('products'));
+        // return view('index');
     }
 
 }
