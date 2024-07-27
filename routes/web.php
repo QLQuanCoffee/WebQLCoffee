@@ -40,7 +40,7 @@ Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail')
 Route::get('/products', [ProductController::class, 'products'])->name('products');
 //Shop
 Route::get('/shops', [ShopController::class, 'shops'])->name('shops');
-Route::get('/detail-shop/{id}', [ShopController::class, 'detail'])->name('detail');
+Route::get('/detail-shop/{id}', [ShopController::class, 'detailShop'])->name('detailShop');
 
 //ADMIN
 

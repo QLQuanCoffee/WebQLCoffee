@@ -20,11 +20,13 @@
                     <div class="row">
                         <h2 id="{{ $type->id }}">{{ $type->name }}</h2>
                         @foreach ($products as $product)
-                            <div class="col-lg-4 col-md-6 col-6">
-                                <a href="{{ route('detail',$product->id) }}"><img src="{{ asset('images/products/',$product->image) }}" alt=""></a>
-                                <h4><a href="{{ route('detail',$product->id) }}">{{ $product->name }}</a></h4>
-                                <p>{{ $product->price_format($product->price) }}</p>
-                            </div>
+                            @if($product->type_id==$type->id)
+                                <div class="col-lg-4 col-md-6 col-6">
+                                    <a href="{{ route('detail',$product->id) }}"><img src="{{ asset('images/products/'.$product->photo.'') }}" alt=""></a>
+                                    <h4><a href="{{ route('detail',$product->id) }}">{{ $product->name }}</a></h4>
+                                    <p>{{ $product->price_format($product->price) }}</p>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

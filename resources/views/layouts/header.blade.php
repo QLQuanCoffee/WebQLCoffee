@@ -67,63 +67,63 @@
                         </li>
                         <li><a href="">Trà</a></li>
                         <li class="menu">
-                            <a href="./menu.html">Menu</a>
+                            <a href="{{ route('products') }}">Menu</a>
                             <ul class="list_1">
-                                <li><a href="./menu.html">Tất cả</a></li>
+                                <li><a href="{{ route('products') }}">Tất cả</a></li>
                                 <li>
-                                    <a href="./menu.html">Cà Phê</a>
+                                    <a href="{{ route('products') }}">Cà Phê</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Cà Phê Việt Nam</a></li>
-                                        <li><a href="./menu.html">Cà Phê Máy</a></li>
-                                        <li><a href="./menu.html">Cold Brew</a></li>
+                                        <li><a href="{{ route('products') }}">Cà Phê Việt Nam</a></li>
+                                        <li><a href="{{ route('products') }}">Cà Phê Máy</a></li>
+                                        <li><a href="{{ route('products') }}">Cold Brew</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">CloudFee</a>
+                                    <a href="{{ route('products') }}">CloudFee</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">CloudFee</a></li>
+                                        <li><a href="{{ route('products') }}">CloudFee</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">CloudTea</a>
+                                    <a href="{{ route('products') }}">CloudTea</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">CloudTea</a></li>
+                                        <li><a href="{{ route('products') }}">CloudTea</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Trà</a>
+                                    <a href="{{ route('products') }}">Trà</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Trà trái cây</a></li>
-                                        <li><a href="./menu.html">Trà sữa Macchiato</a></li>
+                                        <li><a href="{{ route('products') }}">Trà trái cây</a></li>
+                                        <li><a href="{{ route('products') }}">Trà sữa Macchiato</a></li>
                                     </ul>
 
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Hi-Tea Healthy</a>
+                                    <a href="{{ route('products') }}">Hi-Tea Healthy</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Hi-Tea Trà</a></li>
-                                        <li><a href="./menu.html">Hi-Tea Đá Tuyết</a></li>
+                                        <li><a href="{{ route('products') }}">Hi-Tea Trà</a></li>
+                                        <li><a href="{{ route('products') }}">Hi-Tea Đá Tuyết</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Bánh & Snack</a>
+                                    <a href="{{ route('products') }}">Bánh & Snack</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Bánh mặn</a></li>
-                                        <li><a href="./menu.html">Bánh ngọt</a></li>
-                                        <li><a href="./menu.html">Đá Tuyết</a></li>
+                                        <li><a href="{{ route('products') }}">Bánh mặn</a></li>
+                                        <li><a href="{{ route('products') }}">Bánh ngọt</a></li>
+                                        <li><a href="{{ route('products') }}">Đá Tuyết</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Tại nhà</a>
+                                    <a href="{{ route('products') }}">Tại nhà</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Cà phê tại nhà</a></li>
-                                        <li><a href="./menu.html">Trà tại nhà</a></li>
+                                        <li><a href="{{ route('products') }}">Cà phê tại nhà</a></li>
+                                        <li><a href="{{ route('products') }}">Trà tại nhà</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Thức uống khác</a>
+                                    <a href="{{ route('products') }}">Thức uống khác</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">Chocolate</a></li>
+                                        <li><a href="{{ route('products') }}">Chocolate</a></li>
                                     </ul>
                                 </li>
 
@@ -131,34 +131,34 @@
 
                         </li>
                         <li class="menu">
-                            <a href="./menu.html">Chuyện Nhà</a>
+                            <a href="{{ route('products') }}">Chuyện Nhà</a>
                             <ul class="list_2">
                                 <li>
-                                    <a href="./menu.html">Coffeeholic</a>
+                                    <a href="{{ route('products') }}">Coffeeholic</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">#chuyencaphe</a></li>
-                                        <li><a href="./menu.html">#phacaphe</a></li>
+                                        <li><a href="{{ route('products') }}">#chuyencaphe</a></li>
+                                        <li><a href="{{ route('products') }}">#phacaphe</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Teaholic</a>
+                                    <a href="{{ route('products') }}">Teaholic</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">#phatra</a></li>
-                                        <li><a href="./menu.html">#cauchuyenvetra</a></li>
+                                        <li><a href="{{ route('products') }}">#phatra</a></li>
+                                        <li><a href="{{ route('products') }}">#cauchuyenvetra</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="./menu.html">Blog</a>
+                                    <a href="{{ route('products') }}">Blog</a>
                                     <ul class="mini-menu">
-                                        <li><a href="./menu.html">#inthemood</a></li>
-                                        <li><a href="./menu.html">#Review</a></li>
-                                        <li><a href="./menu.html">#HumanofTCH</a></li>
+                                        <li><a href="{{ route('products') }}">#inthemood</a></li>
+                                        <li><a href="{{ route('products') }}">#Review</a></li>
+                                        <li><a href="{{ route('products') }}">#HumanofTCH</a></li>
                                     </ul>
                                 </li>
 
                             </ul>
                         </li>
-                        <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
+                        <li><a href="{{ route('products') }}">Cảm hứng CloudFee</a></li>
                         <li><a href="{{ route('shops') }}">Cửa hàng</a></li>
                     </ul>
                 </div>
@@ -173,10 +173,10 @@
         <div class="header-menu-mini">
             <ul>
                 <li><a href="{{ route('shops') }}">Cà phê</a></li>
-                <li><a href="./menu.html">Trà</a></li>
-                <li><a href="./menu.html">Menu</a></li>
-                <li><a href="./menu.html">Chuyện Nhà</a></li>
-                <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
+                <li><a href="{{ route('products') }}">Trà</a></li>
+                <li><a href="{{ route('products') }}">Menu</a></li>
+                <li><a href="{{ route('products') }}">Chuyện Nhà</a></li>
+                <li><a href="{{ route('products') }}">Cảm hứng CloudFee</a></li>
                 <li><a href="{{ route('shops') }}">Cửa hàng</a></li>
             </ul>
         </div>

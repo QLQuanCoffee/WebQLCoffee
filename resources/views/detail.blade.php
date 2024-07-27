@@ -19,10 +19,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="big">
-                            <img src="{{ asset('images/products/', $product->photo) }}" alt="">
+                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
                         </div>
                         <div class="mini">
-                            <img src="{{ asset('images/products/', $product->photo) }}" alt="">
+                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
@@ -47,15 +47,15 @@
                                 <p class="mb-0 ms-2">Lớn + 10000đ</p>
                             </div>
                         </div>
-                        <p class="title">Topping</p>
-                        <div class="option-topping">
-                            @if (!empty($toppings))
+                        @if (!empty($toppings))
+                            <p class="title">Topping</p>
+                            <div class="option-topping">
                                 @foreach ($toppings as $topping)
-                                    <div class="topping-item">{{ $topping->topping->name }} + {{ $topping->topping->price }}
+                                    <div class="topping-item">{{ $topping->topping->name }} + {{ $topping->topping->price_format($topping->topping->price) }}
                                     </div>
                                 @endforeach
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                         <button class="buy">
                             <i class="fas fa-cart-plus"></i>
                             Đặt giao tận nơi
@@ -78,7 +78,7 @@
                         @foreach ($products as $product)
                             <div class="col-lg-2 col-md-4 col-6">
                                 <a href="{{ route('detail', $product->id) }}"><img
-                                        src="{{ asset('images/products/', $product->photo) }}" alt=""></a>
+                                        src="{{ asset('images/products/' . $product->photo . '') }}" alt=""></a>
                                 <h4><a href="{{ route('detail', $product->id) }}">{{ $product->name }}</a></h4>
                                 <p>{{ $product->price_format($product->price) }}</p>
                             </div>
@@ -96,5 +96,30 @@
                 this.classList.add("choose");
             });
         });
+
+
+        const $ = document.querySelector.bind(document);
+            const $$ = document.querySelectorAll.bind(document);
+
+            const tabs = $$(".size-item");
+            const panes = $$(".topping-item");
+
+            tabs.forEach((tab, index) => {
+                tab.onclick = function () {
+                    $(".size-item.active").classList.remove("active");
+                    this.classList.add("active");
+                };
+            });
+            panes.forEach((pane, index) => {
+                pane.onclick = function () {
+                    if(pane.classList.contains("active")){
+                        pane.classList.remove("active");
+                    }
+                    else
+                    {
+                        this.classList.add("active");
+                    }
+                };
+            });
     </script>
 @endsection

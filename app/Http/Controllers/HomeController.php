@@ -13,7 +13,8 @@ class HomeController extends Controller
         $this->product=$productInterface;
     }
     public function index(){
-        $products=$this->product->getQuantityProduct(0);
+        $products=$this->product->getQuantityProduct(6);
+        //dd($products);
         return view('index',compact('products'));
         // return view('index');
     }
