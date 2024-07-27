@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
-    protected $table='shops';
-    protected $fillable=[
+    protected $table = 'shops';
+    protected $fillable = [
         'id',
         'name',
         'description',
         'address',
         'time',
-        'link_map'
+        'link_map',
+        'photo'
     ];
 }

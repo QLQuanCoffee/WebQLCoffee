@@ -10,8 +10,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
-                        <h2>Tên Quán</h2>
-                        <p class="decription">Mô tả</p>
+                        <h2>{{ $shop->name }}</h2>
+                        <p class="decription">{{ $shop->description }}</p>
                         <br>
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="mb-0"><strong>Địa chỉ</strong></p>
@@ -31,7 +31,7 @@
                                 </a>
                             </div>
                         </div>
-                        <p class="mt-1">Địa chỉ quán</p>
+                        <p class="mt-1">{{ $shop->address }}</p>
                         <div>
                             <p class="mb-0"><strong>Giớ mở cửa</strong></p>
                             <p>Giờ</p>

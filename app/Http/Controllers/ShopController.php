@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    private $type;
+    private $type, $count;
     public function __construct(ShopInterface $shopInterface)
     {
         $this->type = $shopInterface;
@@ -15,11 +15,13 @@ class ShopController extends Controller
     public function shops()
     {
         $types = $this->type->getAllShops();
-        return view('shop');
+        $count = $this->type->getAllShops()->count();
+        return view('shop', compact('types', 'count'));
     }
+
     public function detailShop($id)
     {
-        $shop = $this->type->getAllShops($id);
-        return view('detail-Shop');
+        $shop = $this->type->getShop($id);
+        return view('detail-Shop', compact('shop'));
     }
 }

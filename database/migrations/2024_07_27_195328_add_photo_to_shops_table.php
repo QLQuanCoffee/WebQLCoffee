@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shops', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('address');
-            $table->string('description');
-            $table->string('time');
-            $table->string('link_map');
-            $table->string('photo');
+        Schema::table('shops', function (Blueprint $table) {
+            $table->string('photo')->nullable(); // Thêm cột photo
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shop');
+        Schema::table('shops', function (Blueprint $table) {
+            $table->dropColumn('photo');
+        });
     }
 };

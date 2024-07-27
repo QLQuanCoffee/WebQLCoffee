@@ -40,108 +40,60 @@
             </div>
             <div class="col-10">
                 <div class="container">
-                    <h3>Khám phá (Count) cửa hàng của chúng tôi ở Tp Hồ Chí Minh</h3>
+                    <h3>Khám phá {{ $count }} cửa hàng của chúng tôi ở Tp Hồ Chí Minh</h3>
                     <div class="row">
-                        <div class="col-6">
-                            <div class="card w-100">
-                                <img src="{{ asset('images/footer/thecoffeehouse.jpg') }}" class="card-img-top"
-                                    alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">HCM SIGNATURE by The Coffee House</h5>
-                                    <a href="#" class="btn w-100 text-danger" style="background: #f7fbd1">Xem
-                                        bản
-                                        đồ</a>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <p class="mb-0 me-2"><strong>Chia sẻ trên:</strong></p>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_facebook.svg') }}"
-                                                alt="Facebook">
-                                        </a>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_zalo.svg') }}"
-                                                alt="Zalo">
-                                        </a>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_link.svg') }}"
-                                                alt="Link">
-                                        </a>
-                                    </div>
-                                    <hr>
-                                    <p class="">TTTM Crescent Mall, 101 Tôn Dật Tiên, phường Tân Phú,
-                                        Quận 7, Thành
-                                        phố Hồ Chí Minh
-                                    </p>
-                                    <p>7:00 - 22:00</p>
-                                    <div class="row w-max">
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_car.png') }}" alt="">
-                                            <p class="d-inline-block">Có chỗ đỗ xe hơi</p>
+                        @foreach ($types as $shop)
+                            <div class="col-6">
+                                <div class="card w-100 mb-2">
+                                    <img style="max-height: 270px" src="{{ asset('images/shops/' . $shop->photo) }}"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">HCM SIGNATURE by The Coffee House</h5>
+                                        <a href="#" class="btn w-100 text-danger" style="background: #f7fbd1">Xem
+                                            bản
+                                            đồ</a>
+                                        <div class="d-flex align-items-center mt-3">
+                                            <p class="mb-0 me-2"><strong>Chia sẻ trên:</strong></p>
+                                            <a href="" class="d-inline-block mx-2">
+                                                <img style="max-width: 25px"
+                                                    src="{{ asset('images/icon/icon_facebook.svg') }}" alt="Facebook">
+                                            </a>
+                                            <a href="" class="d-inline-block mx-2">
+                                                <img style="max-width: 25px" src="{{ asset('images/icon/icon_zalo.svg') }}"
+                                                    alt="Zalo">
+                                            </a>
+                                            <a href="" class="d-inline-block mx-2">
+                                                <img style="max-width: 25px" src="{{ asset('images/icon/icon_link.svg') }}"
+                                                    alt="Link">
+                                            </a>
                                         </div>
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_shop.png') }}" alt="">
-                                            <p class="d-inline-block">Phục vụ tại chỗ</p>
-                                        </div>
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_go.png') }}" alt="">
-                                            <p class="d-inline-block">Phục vụ tại chỗ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card w-100">
-                                <img src="{{ asset('images/footer/thecoffeehouse.jpg') }}" class="card-img-top"
-                                    alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">HCM SIGNATURE by The Coffee House</h5>
-                                    <a href="#" class="btn w-100 text-danger" style="background: #f7fbd1">Xem
-                                        bản
-                                        đồ</a>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <p class="mb-0 me-2"><strong>Chia sẻ trên:</strong></p>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_facebook.svg') }}"
-                                                alt="Facebook">
-                                        </a>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_zalo.svg') }}"
-                                                alt="Zalo">
-                                        </a>
-                                        <a href="" class="d-inline-block mx-2">
-                                            <img style="max-width: 25px" src="{{ asset('images/icon/icon_link.svg') }}"
-                                                alt="Link">
-                                        </a>
-                                    </div>
-                                    <hr>
-                                    <p class="">TTTM Crescent Mall, 101 Tôn Dật Tiên, phường Tân Phú, Quận 7,
-                                        Thành
-                                        phố Hồ Chí Minh
-                                    </p>
-                                    <p>7:00 - 22:00</p>
-                                    <div class="row w-max">
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_car.png') }}" alt="">
-                                            <p class="d-inline-block">Có chỗ đỗ xe hơi</p>
-                                        </div>
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_shop.png') }}" alt="">
-                                            <p class="d-inline-block">Phục vụ tại chỗ</p>
-                                        </div>
-                                        <div class="col-md-6 d-inline-block">
-                                            <img class="d-inline-block" style="max-width: 20px;"
-                                                src="{{ asset('images/icon/icon_go.png') }}" alt="">
-                                            <p class="d-inline-block">Phục vụ tại chỗ</p>
+                                        <hr>
+                                        <p class="">TTTM Crescent Mall, 101 Tôn Dật Tiên, phường Tân Phú,
+                                            Quận 7, Thành
+                                            phố Hồ Chí Minh
+                                        </p>
+                                        <p>7:00 - 22:00</p>
+                                        <div class="row w-max">
+                                            <div class="col-md-6 d-inline-block">
+                                                <img class="d-inline-block" style="max-width: 20px;"
+                                                    src="{{ asset('images/icon/icon_car.png') }}" alt="">
+                                                <p class="d-inline-block">Có chỗ đỗ xe hơi</p>
+                                            </div>
+                                            <div class="col-md-6 d-inline-block">
+                                                <img class="d-inline-block" style="max-width: 20px;"
+                                                    src="{{ asset('images/icon/icon_shop.png') }}" alt="">
+                                                <p class="d-inline-block">Phục vụ tại chỗ</p>
+                                            </div>
+                                            <div class="col-md-6 d-inline-block">
+                                                <img class="d-inline-block" style="max-width: 20px;"
+                                                    src="{{ asset('images/icon/icon_go.png') }}" alt="">
+                                                <p class="d-inline-block">Phục vụ tại chỗ</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
