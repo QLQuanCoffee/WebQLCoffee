@@ -38,12 +38,9 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 //Product
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('/products', [ProductController::class, 'products'])->name('products');
-
 //Shop
-Route::get('/shops', [ShopController::class, 'shop'])->name('shop');
+Route::get('/shops', [ShopController::class, 'shops'])->name('shops');
 Route::get('/detail-shop/{id}', [ShopController::class, 'detail'])->name('detail');
-
-
 
 //ADMIN
 

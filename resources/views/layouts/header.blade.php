@@ -159,7 +159,7 @@
                             </ul>
                         </li>
                         <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
-                        <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
+                        <li><a href="{{ route('shops') }}">Cửa hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -172,12 +172,12 @@
         <input type="checkbox" name="" id="bar">
         <div class="header-menu-mini">
             <ul>
-                <li><a href="{{ route('detail') }}">Cà phê</a></li>
+                <li><a href="{{ route('shops') }}">Cà phê</a></li>
                 <li><a href="./menu.html">Trà</a></li>
                 <li><a href="./menu.html">Menu</a></li>
                 <li><a href="./menu.html">Chuyện Nhà</a></li>
                 <li><a href="./menu.html">Cảm hứng CloudFee</a></li>
-                <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
+                <li><a href="{{ route('shops') }}">Cửa hàng</a></li>
             </ul>
         </div>
     </div>
