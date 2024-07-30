@@ -182,6 +182,6 @@
         </div>
     </div>
     <div class="nav_link">
-        <a href="./giohang.html"><i class="fas fa-shopping-cart shop" style="color: #E57905;"></i></a>
+        <a href="{{ route('cart') }}"><i class="fas fa-shopping-cart shop" style="color: #E57905;"></i></a>
     </div>
 </div>

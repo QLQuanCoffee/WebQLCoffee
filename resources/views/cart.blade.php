@@ -117,63 +117,56 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="row info-buy">
-                            <div class="col-8">
-                                <a href="">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <div class="info">
-                                    <h6>2 x Đường đen sữa đá</h6>
-                                    <p>Vừa, 2 x Vừa</p>
-                                    <p>Xóa</p>
+                    <?php $sum=0; ?>
+                    @if(!empty($carts))
+                        @foreach ($carts as $cart)
+                            <?php
+                                $priceToppping=0;
+                                foreach($details as $detail){
+                                    if($detail->cart_id==$cart->id)
+                                    {
+                                        $priceToppping+=$detail->topping->price;
+
+                                    }
+                                }
+                                $sum+=$cart->quantity*($cart->product->price+$priceToppping);
+                            ?>
+                            <div class="col-12">
+                                <div class="row info-buy">
+                                    <div class="col-8">
+                                        <a href="">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <div class="info">
+                                            <h6>{{ $cart->quantity }} x {{ $cart->product->name }}</h6>
+                                            <p>
+                                                {{ $cart->size }},
+
+                                                <form action="{{ route('updateCart') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $cart->id }}" />
+                                                    <input type="number" name="quantity" id="" value="{{ $cart->quantity }}" style="width: 30px">
+                                                    <button class="btn" type="submit"></button>
+                                                </form>
+                                                x {{ $cart->size }}</p>
+                                            <p>
+                                                <form action="{{ route('deleteCart') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $cart->id }}">
+                                                    <button type="submit">Xóa</button>
+                                                </form>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="money">
+                                            <p>{{ $cart->product->price_format($cart->quantity*($cart->product->price+$priceToppping)) }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="money">
-                                    <p>98.000đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="row info-buy">
-                            <div class="col-8">
-                                <a href="">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <div class="info">
-                                    <h6>1 x Hi-Tea Đào Kombucha</h6>
-                                    <p>Vừa, 1 x Vừa</p>
-                                    <p>Xóa</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="money">
-                                    <p>65.000đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="row info-buy">
-                            <div class="col-8">
-                                <a href="">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <div class="info">
-                                    <h6>1 x CloudTea Oolong</h6>
-                                    <p>Nhỏ, 1 x Nhỏ</p>
-                                    <p>Xóa</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="money">
-                                    <p>59.000đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="row check">
                     <div class="col-4">
@@ -190,7 +183,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="money">
-                                    <p>222.000đ</p>
+                                    <p>{{ $sum>0?$carts[0]->product->price_format($sum):0 }}</p>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +207,7 @@
                             <div class="col-8">
                                 <div class="pay white">
                                     <p>Thành tiền</p>
-                                    <p>222.000đ</p>
+                                    <p style="color: white">{{ $sum>0?$carts[0]->product->price_format($sum+18000):0 }}</p>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -227,8 +220,11 @@
                 </div>
                 <div class="row delete">
                     <div class="col-12">
-                        <i class="fas fa-trash"></i>
-                        <span>Xóa đơn hàng</span>
+
+                        <form action="{{ route('deleteAllCart') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button class="btn" type="submit"><i class="fas fa-trash"></i>Xóa đơn hàng</button>
+                        </form>
                     </div>
                 </div>
             </div>

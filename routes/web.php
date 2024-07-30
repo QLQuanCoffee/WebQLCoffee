@@ -33,8 +33,11 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'storeRegister'])->name('storeRegister');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //Cart
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/addCart',[CartController::class,'addCart'])->name('addCart');
+Route::post('/updateCart',[CartController::class,'updateCart'])->name('updateCart');
+Route::post('/deleteCart',[CartController::class,'deleteCart'])->name('deleteCart');
+Route::post('/deleteAllCart',[CartController::class,'deleteAllCart'])->name('deleteAllCart');
 //Product
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('/products', [ProductController::class, 'products'])->name('products');

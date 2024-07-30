@@ -24,4 +24,8 @@ class DetailCartToppingRepository implements  DetailCartToppingInterface{
         $detailCartTopping=DetailCartTopping::find($id);
         $detailCartTopping->delete();
     }
+    public function deleteDetailCartToppingByCart($idCart){
+        $detailCartToppings=DetailCartTopping::where('cart_id',$idCart);
+        $detailCartToppings->delete();
+    }
 }

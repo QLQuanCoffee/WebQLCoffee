@@ -7,21 +7,30 @@ class CartRepository implements  CartInterface{
         return Cart::get();
     }
     public function getCart($id){
-        return Cart::find($id);
+        return Cart::find($id)->first();
+    }
+    public function getCartByUser($id){
+        return Cart::where('user_id',$id)->get();
+    }
+    public function getCartByUserAndProduct($user_id, $product_id){
+        return Cart::where('user_id', $user_id)
+               ->where('product_id', $product_id)
+               ->first();
     }
     public function insertCart($data){
         Cart::create($data);
     }
     public function updateCart($data,$id){
         $cart=Cart::where('id',$id)->first();
-        $cart->product_id=$data['product_id'];
         $cart->quantity=$data['quantity'];
-        $cart->size=$data['size'];
-        $cart->user_id=$data['user_id'];
         $cart->save();
     }
     public function deleteCart($id){
         $cart=Cart::find($id);
         $cart->delete();
+    }
+    public function deleteAllCart($idUser){
+        $carts=Cart::where('user_id',$idUser);
+        $carts->delete();
     }
 }

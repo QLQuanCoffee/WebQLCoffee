@@ -7,4 +7,5 @@ interface DetailCartToppingInterface{
     public function insertDetailCartTopping($data);
     public function updateDetailCartTopping($data,$id);
     public function deleteDetailCartTopping($id);
+    public function deleteDetailCartToppingByCart($idCart);
 }
