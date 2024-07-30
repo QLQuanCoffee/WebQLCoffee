@@ -19,10 +19,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="big">
-                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
+                            <img src="{{ asset('images/products/' . $product->photo) }}" alt="">
                         </div>
                         <div class="mini">
-                            <img src="{{ asset('images/products/'. $product->photo) }}" alt="">
+                            <img src="{{ asset('images/products/' . $product->photo) }}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
@@ -34,34 +34,19 @@
                             <br>
                             <p style="font-size: 1.5rem">Chọn size(bắt buộc)</p>
                             <div class="row option-size">
-                                {{-- <div class="d-flex align-items-center p-2 m-2 size">
-                                    <img src="{{ asset('images/icon/glass_coffee.svg') }}"
-                                        style="max-height: 15px; max-width: 15px;" alt="">
-                                    <p class="mb-0 ms-2">Nhỏ + 0đ</p>
-                                </div>
-                                <div class="d-flex align-items-center p-2 m-2 size">
-                                    <img src="{{ asset('images/icon/glass_coffee.svg') }}"
-                                        style="max-height: 20px; max-width: 20px;" alt="">
-                                    <p class="mb-0 ms-2">Vừa + 6000đ</p>
-                                </div>
-                                <div class="d-flex align-items-center p-2 m-2 size">
-                                    <img src="{{ asset('images/icon/glass_coffee.svg') }}"
-                                        style="max-height: 30px; max-width: 30px;" alt="">
-                                    <p class="mb-0 ms-2">Lớn + 10000đ</p>
-                                </div> --}}
-                                <div class="d-flex align-items-center p-2 m-2 size">
+                                <div class="d-flex col-lg-3 align-items-center p-2 m-2 size">
                                     <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                         style="max-height: 15px; max-width: 15px;" alt="">
                                     <input type="hidden" name="size-small" value="" class="me-2 size-input">
                                     <p class="mb-0">Nhỏ + 0đ</p>
                                 </div>
-                                <div class="d-flex align-items-center p-2 m-2 size">
+                                <div class="d-flex col-lg-3 align-items-center p-2 m-2 size">
                                     <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                         style="max-height: 20px; max-width: 20px;" alt="">
                                     <input type="hidden" name="size-medium" value="" class="me-2 size-input">
                                     <p class="mb-0">Vừa + 6000đ</p>
                                 </div>
-                                <div class="d-flex align-items-center p-2 m-2 size">
+                                <div class="d-flex col-lg-3 align-items-center p-2 m-2 size">
                                     <img src="{{ asset('images/icon/glass_coffee.svg') }}"
                                         style="max-height: 30px; max-width: 30px;" alt="">
                                     <input type="hidden" name="size-large" value="" class="me-2 size-input">
@@ -73,8 +58,10 @@
                                 <div class="option-topping">
                                     @foreach ($toppings as $topping)
                                         <div class="topping-item">
-                                            <input type="hidden" name="toppings[]" value="0" class="me-2 topping-input">
-                                            {{ $topping->topping->name }} + {{ $topping->topping->price_format($topping->topping->price) }}
+                                            <input type="hidden" name="toppings[]" value="0"
+                                                class="me-2 topping-input">
+                                            {{ $topping->topping->name }} +
+                                            {{ $topping->topping->price_format($topping->topping->price) }}
                                         </div>
                                     @endforeach
                                 </div>
@@ -101,7 +88,9 @@
                     @if ($products)
                         @foreach ($products as $product)
                             <div class="col-lg-2 col-md-4 col-6">
-                                <a href="{{ route('detail', $product->id) }}"><img src="{{ asset('images/products/' . $product->photo . '') }}" style="width: 100%" alt=""></a>
+                                <a href="{{ route('detail', $product->id) }}"><img
+                                        src="{{ asset('images/products/' . $product->photo . '') }}" style="width: 100%"
+                                        alt=""></a>
                                 <h4><a href="{{ route('detail', $product->id) }}">{{ $product->name }}</a></h4>
                                 <p>{{ $product->price_format($product->price) }}</p>
                             </div>
@@ -124,30 +113,28 @@
 
 
         const $ = document.querySelector.bind(document);
-            const $$ = document.querySelectorAll.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
 
-            const tabs = $$(".size-item");
-            const panes = $$(".topping-item");
+        const tabs = $$(".size-item");
+        const panes = $$(".topping-item");
 
-            tabs.forEach((tab, index) => {
-                tab.onclick = function () {
-                    $(".size-item.active").classList.remove("active");
+        tabs.forEach((tab, index) => {
+            tab.onclick = function() {
+                $(".size-item.active").classList.remove("active");
+                this.classList.add("active");
+            };
+        });
+        panes.forEach((pane, index) => {
+            pane.onclick = function() {
+                var input = this.querySelector('.topping-input');
+                if (pane.classList.contains("active")) {
+                    pane.classList.remove("active");
+                    input.value = 0;
+                } else {
                     this.classList.add("active");
-                };
-            });
-            panes.forEach((pane, index) => {
-                pane.onclick = function () {
-                    var input = this.querySelector('.topping-input');
-                    if(pane.classList.contains("active")){
-                        pane.classList.remove("active");
-                        input.value = 0;
-                    }
-                    else
-                    {
-                        this.classList.add("active");
-                        input.value = 1;
-                    }
-                };
-            });
+                    input.value = 1;
+                }
+            };
+        });
     </script>
 @endsection
