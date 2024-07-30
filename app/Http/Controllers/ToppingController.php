@@ -21,7 +21,7 @@ class ToppingController extends Controller
     public function postInsert(Request $request){
         $request->validate([
             'name' => 'required',
-            'price' => 'required'
+            'price' => 'required|'
         ],[
             'name.required' => 'Vui lòng nhập tên topping',
             'price.required' => 'Vui lòng nhập giá'
@@ -53,7 +53,7 @@ class ToppingController extends Controller
             'name' => $request->get('name'),
             'price' => $request->get('price')
         ],$request->get('id'));
-        return view('admin.topping.index');
+        return redirect()->route('admin.topping.index');
     }
     public function delete($id){
         $this->topping->deleteTopping($id);
