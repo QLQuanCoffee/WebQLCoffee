@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -48,6 +49,7 @@ Route::get('/detail-shop/{id}', [ShopController::class, 'detailShop'])->name('de
 //ADMIN
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/',[AdminController::class,'index'])->name('home');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/insert', [OrderController::class, 'insert'])->name('insert');

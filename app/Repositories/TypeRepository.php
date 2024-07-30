@@ -13,7 +13,7 @@ class TypeRepository implements  TypeInterface{
         Type::create($data);
     }
     public function updateType($data,$id){
-        $type=Type::where('id',$id)->first();
+        $type=Type::find($id);
         $type->name=$data['name'];
         $type->save();
     }
