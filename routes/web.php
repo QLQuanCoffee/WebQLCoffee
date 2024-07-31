@@ -97,6 +97,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/detail/{id}', [UserController::class,'detail'])->name('detail');
         Route::get('/insert', [UserController::class, 'insert'])->name('insert');
         Route::post('/insert', [UserController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [UserController::class, 'update'])->name('update');

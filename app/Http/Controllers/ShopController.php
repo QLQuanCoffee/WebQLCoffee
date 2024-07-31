@@ -20,7 +20,10 @@ class ShopController extends Controller
         $count = $this->shop->getAllShops()->count();
         return view('shop', compact('shops', 'count'));
     }
-
+    public function detail($id){
+        $shop=$this->shop->getShop($id);
+        return view('admin.shop.detail', compact('shop'));
+    }
     public function detailShop($id)
     {
         $shop = $this->shop->getShop($id);
