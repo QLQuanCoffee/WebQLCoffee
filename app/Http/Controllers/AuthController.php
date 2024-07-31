@@ -26,7 +26,7 @@ class AuthController extends Controller
             'password.required' => 'Vui lòng nhập mật khẩu',
         ]);
 
-        $user = $this->user->getUser($request->get('email'));
+        $user = $this->user->getUserByEmail($request->get('email'));
 
         if ($user) {
             if (Hash::check($request->get('password'), $user->password)) {
