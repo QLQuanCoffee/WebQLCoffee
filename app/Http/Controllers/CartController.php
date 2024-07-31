@@ -6,13 +6,15 @@ use App\Repositories\Interfaces\CartInterface;
 use App\Repositories\Interfaces\DetailCartToppingInterface;
 use App\Repositories\Interfaces\DetailToppingProductInterface;
 use App\Repositories\Interfaces\ProductInterface;
+use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    private $product, $cart, $detailCartTopping, $detailToppingProduct;
-    public function __construct(ProductInterface $productInterface, CartInterface $cartInterface, DetailCartToppingInterface $detailCartToppingInterface, DetailToppingProductInterface $detailToppingProductInterface)
+    private $product, $cart, $detailCartTopping, $detailToppingProduct, $user;
+    public function __construct(ProductInterface $productInterface, CartInterface $cartInterface, DetailCartToppingInterface $detailCartToppingInterface, DetailToppingProductInterface $detailToppingProductInterface, UserInterface $userInterface)
     {
+        $this->user = $userInterface;
         $this->product = $productInterface;
         $this->cart = $cartInterface;
         $this->detailCartTopping = $detailCartToppingInterface;
@@ -21,12 +23,30 @@ class CartController extends Controller
     public function index()
     {
         if (session()->get('id')) {
+            $user = $this->user->getUser(session()->get('id'));
             $carts = $this->cart->getCartByUser(session()->get('id'));
             $details = $this->detailCartTopping->getAllDetailCartToppings();
-            return view('cart', compact('carts', 'details'));
+            return view('cart', compact('carts', 'details', 'user'));
         }
         return redirect()->route('home');
     }
+    public function saveAddress(Request $request)
+    {
+        $request->validate([
+            'address_option' => 'required|in:existing,new',
+            'address' => 'nullable|string|max:255',
+        ]);
+        $address = '';
+        $user = $this->user->getUser(session()->get('id'));
+        if ($request->address_option == 'new') {
+            $address = $request->address;
+        } else {
+            $address = $user->address;
+        }
+        session(['address' => $address]);
+        return redirect()->route('delivery');
+    }
+
     public function addCart(Request $request)
     {
         if (session()->get('id')) {

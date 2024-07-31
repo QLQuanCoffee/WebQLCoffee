@@ -56,3 +56,4 @@
 </body>
 
 </html>
+<script src="{{ asset('js/map.js') }}"></script>

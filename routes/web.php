@@ -35,21 +35,28 @@ Route::post('/register', [AuthController::class, 'storeRegister'])->name('storeR
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/addCart',[CartController::class,'addCart'])->name('addCart');
-Route::post('/updateCart',[CartController::class,'updateCart'])->name('updateCart');
-Route::post('/deleteCart',[CartController::class,'deleteCart'])->name('deleteCart');
-Route::post('/deleteAllCart',[CartController::class,'deleteAllCart'])->name('deleteAllCart');
+Route::post('/addCart', [CartController::class, 'addCart'])->name('addCart');
+Route::post('/updateCart', [CartController::class, 'updateCart'])->name('updateCart');
+Route::post('/deleteCart', [CartController::class, 'deleteCart'])->name('deleteCart');
+Route::post('/deleteAllCart', [CartController::class, 'deleteAllCart'])->name('deleteAllCart');
+Route::post('/save-address', [CartController::class, 'saveAddress'])->name('save.address');
+Route::get('/delivery', function () {
+    return view('delivery');
+})->name('delivery');
 //Product
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('/products', [ProductController::class, 'products'])->name('products');
 //Shop
 Route::get('/shops', [ShopController::class, 'shops'])->name('shops');
 Route::get('/detail-shop/{id}', [ShopController::class, 'detailShop'])->name('detailShop');
+//Delivery
+
+
 
 //ADMIN
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/',[AdminController::class,'index'])->name('home');
+    Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/insert', [OrderController::class, 'insert'])->name('insert');
@@ -61,7 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('product')->name('product.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
-        Route::get('/detail/{id}',[ProductController::class,'detail'])->name('detail');
+        Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
         Route::get('/insert', [ProductController::class, 'insert'])->name('insert');
         Route::post('/insert', [ProductController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [ProductController::class, 'update'])->name('update');
@@ -71,7 +78,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/', [ShopController::class, 'index'])->name('index');
-        Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
+        Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('detail');
         Route::get('/insert', [ShopController::class, 'insert'])->name('insert');
         Route::post('/insert', [ShopController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [ShopController::class, 'update'])->name('update');
@@ -97,7 +104,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/detail/{id}', [UserController::class,'detail'])->name('detail');
+        Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
         Route::get('/insert', [UserController::class, 'insert'])->name('insert');
         Route::post('/insert', [UserController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [UserController::class, 'update'])->name('update');
