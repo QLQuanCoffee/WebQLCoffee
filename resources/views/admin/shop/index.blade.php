@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-5 mb-5">
+        <a href="{{ route('admin.shop.insert') }}" class="btn btn-primary mb-2">Thêm sản phẩm</a>
         <div class="row">
-            <a href="{{ route('admin.shop.insert') }}" class="btn btn-primary mb-2">Thêm sản phẩm</a>
             @if (count($shops) > 0)
                 <table class="table table-bordered">
                     <tr>
@@ -19,11 +19,11 @@
                                     alt="">
                             </td>
                             <td><a href="{{ route('admin.shop.detail', $shop->id) }}">{{ $shop->name }}</a></td>
-                            <td>{{ $hop->time }}</td>
+                            <td>{{ $shop->time }}</td>
                             <td>{{ $shop->address }}</td>
                             <td>
                                 <a href="{{ route('admin.shop.update', ['id' => $shop->id]) }}"
-                                    class="btn btn-success">Sửa</a> |
+                                    class="btn btn-success">Sửa</a>
                                 <form action="{{ route('admin.shop.delete', $shop->id) }}" method="GET"
                                     onsubmit="return confirm('{{ trans('Bạn có muốn xoá shop này không ? ') }}');"
                                     style="display: inline-block;">

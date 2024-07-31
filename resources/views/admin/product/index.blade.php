@@ -15,7 +15,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>
-                                <img src="{{ asset('images/product/' . $product->photo . '') }}" style="height: 50px"
+                                <img src="{{ asset('images/products/'.$product->photo.'') }}" style="width: 100px"
                                     alt="">
                             </td>
                             <td><a href="{{ route('admin.product.detail', $product->id) }}">{{ $product->name }}</a></td>

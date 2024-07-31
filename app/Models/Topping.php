@@ -9,6 +9,7 @@ class Topping extends Model
 {
     use HasFactory;
     protected $table='toppings';
+    public $timestamps = false;
     protected $fillable=[
         'id',
         'name',

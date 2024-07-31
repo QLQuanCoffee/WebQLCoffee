@@ -61,6 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('product')->name('product.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/detail/{id}',[ProductController::class,'detail'])->name('detail');
         Route::get('/insert', [ProductController::class, 'insert'])->name('insert');
         Route::post('/insert', [ProductController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [ProductController::class, 'update'])->name('update');
@@ -70,6 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/', [ShopController::class, 'index'])->name('index');
+        Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
         Route::get('/insert', [ShopController::class, 'insert'])->name('insert');
         Route::post('/insert', [ShopController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [ShopController::class, 'update'])->name('update');

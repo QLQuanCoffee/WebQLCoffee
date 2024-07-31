@@ -19,6 +19,7 @@ class ShopRepository implements  ShopInterface{
         $shop->address=$data['address'];
         $shop->time=$data['time'];
         $shop->link_map=$data['link_map'];
+        $shop->photo=$data['photo'];
         $shop->save();
     }
     public function deleteShop($id){

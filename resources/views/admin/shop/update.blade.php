@@ -2,7 +2,8 @@
 @section('content')
     <div class="container mt-5 mb-5">
         <h2>Update</h2>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.shop.postUpdate') }}" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ $shop->id }}">
             <table class="table table-bordered">
                 <tr>
                     <td><label class="form-label">Tên cửa hàng</label></td>
