@@ -34,7 +34,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">EMAIL</label><br>
-                                    <input type="email" name="email" placeholder="Nhập email: " value="{{ old('email') }}">
+                                    <input type="email" name="email" placeholder="Nhập email: "
+                                        value="{{ old('email') }}">
                                 </div>
                                 @error('email')
                                     <div class="text-sm text-danger">{{ $message }}</div>
@@ -43,11 +44,17 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">MẬT KHẨU</label><br>
-                                    <input type="password" name="password" placeholder="Nhập mật khẩu: " value="{{ old('password') }}">
+                                    <input type="password" name="password" placeholder="Nhập mật khẩu: "
+                                        value="{{ old('password') }}">
                                 </div>
                                 @error('email')
                                     <div class="text-sm text-danger">{{ $message }}</div>
                                 @enderror
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-md-12">
                                 <div class="form-btn">

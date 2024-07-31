@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function login(){
         return view('login');
     }
-    public function storeLogin(Request $request){
+    public function storeLogin(Request $request) {
         $request->validate([
             'email' => 'required',
             'password' => 'required'
@@ -25,21 +25,24 @@ class AuthController extends Controller
             'email.required' => 'Vui lòng nhập email',
             'password.required' => 'Vui lòng nhập mật khẩu',
         ]);
-        $user=$this->user->getUser($request->get('email'));
-        if($user){
-            if (Hash::check($request->get('password'), $user->password)){
+
+        $user = $this->user->getUser($request->get('email'));
+
+        if ($user) {
+            if (Hash::check($request->get('password'), $user->password)) {
                 session()->put('id', $user->id);
-                session()->put('email',$user->email);
+                session()->put('email', $user->email);
                 session()->put('name', $user->name);
                 session()->put('avatar', $user->avatar);
                 session()->put('role', $user->role);
-                if($user->role=='admin')
+
+                if ($user->role == 'admin') {
                     return redirect()->route('admin');
+                }
                 return redirect()->route('home');
             }
-        }else{
-            return redirect()->route('login')->with('password','email or password was wrong');
         }
+        return redirect()->route('login')->with('error', 'Sai email hoặc mật khẩu');
     }
     public function register(){
         return view('register');
