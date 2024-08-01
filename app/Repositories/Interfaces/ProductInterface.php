@@ -7,4 +7,5 @@ interface ProductInterface{
     public function insertProduct($data);
     public function updateProduct($data,$id);
     public function deleteProduct($id);
+    public function getLastProductInsert();
 }

@@ -7,4 +7,6 @@ interface DetailToppingProductInterface{
     public function insertDetailToppingProduct($data);
     public function updateDetailToppingProduct($data,$id);
     public function deleteDetailToppingProduct($id);
+    public function deleteDetailToppingProductByProduct($idProduct);
+    public function deleteDetailToppingProductByProductAndTopping($idProduct, $idTopping);
 }

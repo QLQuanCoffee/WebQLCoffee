@@ -24,4 +24,12 @@ class DetailToppingProductRepository implements  DetailToppingProductInterface{
         $detailToppingProduct=DetailToppingProduct::find($id);
         $detailToppingProduct->delete();
     }
+    public function deleteDetailToppingProductByProduct($idProduct){
+        $detailToppingProducts=DetailToppingProduct::where('product_id', $idProduct);
+        $detailToppingProducts->delete();
+    }
+    public function deleteDetailToppingProductByProductAndTopping($idProduct, $idTopping){
+        $detailToppingProduct=DetailToppingProduct::where('product_id',$idProduct)->where('topping_id',$idTopping)->first();
+        $detailToppingProduct->delete();
+    }
 }

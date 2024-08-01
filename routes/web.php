@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DetailToppingProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ToppingController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Models\Cart;
+use App\Models\DetailToppingProduct;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,10 +72,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
         Route::get('/insert', [ProductController::class, 'insert'])->name('insert');
-        Route::post('/insert', [ProductController::class, 'postInsert'])->name('postInsert');
+        Route::post('/insertProduct', [ProductController::class, 'postInsert'])->name('postInsert');
         Route::get('/update/{id}', [ProductController::class, 'update'])->name('update');
         Route::post('/update', [ProductController::class, 'postUpdate'])->name('postUpdate');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
+        Route::post('/insertTopping', [ProductController::class,'insertTopping'])->name('insertTopping');
+        Route::post('/deleteTopping', [ProductController::class,'deleteTopping'])->name('deleteTopping');
+
     });
 
     Route::prefix('shop')->name('shop.')->group(function () {
@@ -110,5 +115,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/update/{id}', [UserController::class, 'update'])->name('update');
         Route::post('/update', [UserController::class, 'postUpdate'])->name('postUpdate');
         Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('detailToppingProduct')->name('detailToppingProduct.')->group(function (){
+        Route::post('/insert', [DetailToppingProductController::class,'insert'])->name('insert');
+        Route::post('/delete', [DetailToppingProductController::class,'delete'])->name('delete');
+
     });
 });

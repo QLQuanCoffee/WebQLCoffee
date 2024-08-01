@@ -10,7 +10,7 @@ class ProductRepository implements  ProductInterface{
         return Product::limit($num)->get();
     }
     public function getProduct($id){
-        return Product::find($id);
+        return Product::find($id)->first();
     }
     public function insertProduct($data){
         Product::create($data);
@@ -27,5 +27,8 @@ class ProductRepository implements  ProductInterface{
     public function deleteProduct($id){
         $product=Product::find($id);
         $product->delete();
+    }
+    public function getLastProductInsert(){
+        return Product::latest()->first();
     }
 }

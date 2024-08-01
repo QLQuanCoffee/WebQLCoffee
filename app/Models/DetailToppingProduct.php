@@ -11,7 +11,7 @@ class DetailToppingProduct extends Model
     protected $table='detail_topping_products';
     protected $fillable=[
         'id',
-        'cart_id',
+        'product_id',
         'topping_id',
         'quantity'
     ];
