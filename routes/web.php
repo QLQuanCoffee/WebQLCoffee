@@ -50,7 +50,7 @@ Route::get('/products', [ProductController::class, 'products'])->name('products'
 Route::get('/shops', [ShopController::class, 'shops'])->name('shops');
 Route::get('/detail-shop/{id}', [ShopController::class, 'detailShop'])->name('detailShop');
 //Delivery
-
+Route::get('/delivery', [ShopController::class, 'delivery'])->name('delivery');
 
 
 //ADMIN

@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detail-shop.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/delivery.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 </head>
 
 <body>
@@ -56,4 +57,3 @@
 </body>
 
 </html>
-<script src="{{ asset('js/map.js') }}"></script>

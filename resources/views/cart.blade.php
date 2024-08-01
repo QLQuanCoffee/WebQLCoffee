@@ -215,7 +215,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="push">
-                                    <button type="submit">Đặt hàng</button>
+                                    <button class="btn-dathang" type="submit">Đặt hàng</button>
                                 </div>
                             </div>
                         </div>
