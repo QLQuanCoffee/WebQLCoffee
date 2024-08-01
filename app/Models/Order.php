@@ -16,4 +16,11 @@ class Order extends Model
         'total_price',
         'user_id'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function price_format($price)
+    {
+        return number_format($price, 0, ',', '.') . 'vnđ';
+    }
 }

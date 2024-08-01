@@ -61,10 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
-        Route::get('/insert', [OrderController::class, 'insert'])->name('insert');
-        Route::post('/insert', [OrderController::class, 'postInsert'])->name('postInsert');
-        Route::get('/update/{id}', [OrderController::class, 'update'])->name('update');
-        Route::post('/update', [OrderController::class, 'postUpdate'])->name('postUpdate');
+        Route::get('/detail/{id}', [OrderController::class,'detail'])->name('detail');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
     });
 

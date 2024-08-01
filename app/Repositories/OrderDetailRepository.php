@@ -6,8 +6,8 @@ class OrderDetailRepository implements  OrderDetailInterface{
     public function getAllOrderDetails(){
         return OrderDetail::get();
     }
-    public function getOrderDetail($id){
-        return OrderDetail::find($id);
+    public function getOrderDetail($idOrder){
+        return OrderDetail::where('order_id',$idOrder)->get();
     }
     public function insertOrderDetail($data){
         OrderDetail::create($data);
@@ -22,7 +22,7 @@ class OrderDetailRepository implements  OrderDetailInterface{
         $orderDetail->save();
     }
     public function deleteOrderDetail($id){
-        $orderDetail=OrderDetail::find($id);
+        $orderDetail=OrderDetail::where('order_id',$id)->get();
         $orderDetail->delete();
     }
 }
