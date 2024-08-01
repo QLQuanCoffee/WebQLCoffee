@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\CartInterface;
+use App\Repositories\Interfaces\DetailCartToppingInterface;
+use App\Repositories\Interfaces\OrderDetailInterface;
+use App\Repositories\Interfaces\OrderInterface;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 use App\Repositories\Interfaces\ShopInterface;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class ShopController extends Controller
 {
-    private $shop, $count;
-    public function __construct(ShopInterface $shopInterface)
+    private $shop, $count, $order, $cart, $detailCartTopping, $orderDetail;
+    public function __construct(ShopInterface $shopInterface, OrderInterface $orderInterface, CartInterface $cartInterface, DetailCartToppingInterface $detailCartToppingInterface, OrderDetailInterface $orderDetailInterface)
     {
         $this->shop = $shopInterface;
+        $this->order=$orderInterface;
+        $this->cart=$cartInterface;
+        $this->detailCartTopping=$detailCartToppingInterface;
+        $this->orderDetail=$orderDetailInterface;
     }
     public function shops()
     {
@@ -33,6 +43,38 @@ class ShopController extends Controller
     }
     public function delivery()
     {
+        $carts=$this->cart->getCartByUser(session()->get('id'));
+        $this->order->insertOrder([
+            'date' => now(),
+            'total_price' => 0,
+            'user_id' => session()->get('id')
+        ]);
+        $order=$this->order->getLastOrderInsert();
+        $total=0;
+        foreach($carts as $cart){
+            $toppingPrice=0;
+            $totalCart=0;
+            $listTopping='';
+            $toppings=$this->detailCartTopping->getDetailByCart($cart->id);
+            if(!empty($toppings)){
+                foreach($toppings as $topping){
+                    $toppingPrice+=$topping->quantity*$topping->topping->price;
+                    $listTopping.=$topping->topping->name.' ';
+                    $this->detailCartTopping->deleteDetailCartTopping($topping->id);
+                }
+            }
+            $totalCart=$cart->quantity*($toppingPrice + $cart->product->price);
+            $this->orderDetail->insertOrderDetail([
+                'quantity' => $cart->quantity,
+                'topping' => $listTopping,
+                'price' => $totalCart,
+                'product_id' => $cart->product_id,
+                'order_id' => $order->id
+            ]);
+            $total+=$totalCart;
+        }
+        $this->order->updateTotalPriceOrder(($total+18000),$order->id);
+        $this->cart->deleteAllCart(session()->get('id'));
         $shops = $this->shop->getAllShops();
         return view('delivery', compact('shops'));
     }
