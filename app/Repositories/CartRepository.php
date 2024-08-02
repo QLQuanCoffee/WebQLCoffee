@@ -13,7 +13,7 @@ class CartRepository implements CartInterface
     }
     public function getCart($id)
     {
-        return Cart::find($id)->first();
+        return Cart::find($id);
     }
     public function getCartByUser($id)
     {

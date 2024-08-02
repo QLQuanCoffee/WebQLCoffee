@@ -30,7 +30,6 @@ class ProductController extends Controller
     public function detail($id){
         $product=$this->product->getProduct($id);
         $toppings=$this->detailToppingProduct->getDetailByProduct($id);
-         dd($product);
         $products=$this->product->getQuantityProduct(6);
         return view('detail', compact('product','toppings','products'));
     }

@@ -10,7 +10,7 @@ class ProductRepository implements  ProductInterface{
         return Product::limit($num)->get();
     }
     public function getProduct($id){
-        return Product::find($id)->first();
+        return Product::find($id);
     }
     public function insertProduct($data){
         Product::create($data);

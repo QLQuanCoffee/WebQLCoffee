@@ -11,6 +11,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ToppingController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckAdmin;
 use App\Models\Cart;
 use App\Models\DetailToppingProduct;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,7 @@ Route::get('/delivery', [ShopController::class, 'delivery'])->name('delivery');
 
 //ADMIN
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('admin')->name('admin.')->group( function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
