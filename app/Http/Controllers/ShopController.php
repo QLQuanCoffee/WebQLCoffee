@@ -59,7 +59,7 @@ class ShopController extends Controller
             if(!empty($toppings)){
                 foreach($toppings as $topping){
                     $toppingPrice+=$topping->quantity*$topping->topping->price;
-                    $listTopping.=$topping->topping->name.' ';
+                    $listTopping.=$topping->topping->name.', ';
                     $this->detailCartTopping->deleteDetailCartTopping($topping->id);
                 }
             }
