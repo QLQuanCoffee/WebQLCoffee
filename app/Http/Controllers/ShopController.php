@@ -68,6 +68,7 @@ class ShopController extends Controller
                 'quantity' => $cart->quantity,
                 'topping' => $listTopping,
                 'price' => $totalCart,
+                'size'=> $cart->size,
                 'product_id' => $cart->product_id,
                 'order_id' => $order->id
             ]);
