@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="list">
                         <ul>
-                            <li><a href="./index.html">Trang chủ</a></li>
+                            <li><a href="{{ route('home') }}">Trang chủ</a></li>
                             <li>/</li>
                             <li><a href="#">Đăng nhập</a></li>
                         </ul>
@@ -62,23 +62,6 @@
                                 </div>
                             </div>
                         </form>
-                        {{-- <div class="col-md-12">
-                            <div class="flex">
-                                    <div class="cut"></div>
-                                    <p>Hoặc</p>
-                                    <div class="cut"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-6">
-                            <a href="https://facebook.com">
-                                <img src="./assets/img-dangki/face.svg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-6">
-                            <a href="https://google.com">
-                                <img src="./assets/img-dangki/gg.svg" alt="">
-                            </a>
-                        </div> --}}
                     </div>
                 </div>
             </div>

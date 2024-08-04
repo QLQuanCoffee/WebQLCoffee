@@ -9,31 +9,31 @@
             <div class="col-2 border-right">
                 <ul>
                     <li><strong>Theo khu vực</strong></li>
-                    <a class="active" href="">
+                    <a class="active" href="#">
                         <li>Tp Hồ Chí Minh (62)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Hà Nội (33)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Hải Phòng (5)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Đà Nẵng (3)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Tây Ninh (2)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Cần Thơ (2)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Nha Trang (3)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Kiên Giang (2)</li>
                     </a>
-                    <a href="">
+                    <a href="#">
                         <li>Nghệ An (4)</li>
                     </a>
                 </ul>
@@ -54,15 +54,15 @@
                                             đồ</a>
                                         <div class="d-flex align-items-center mt-3">
                                             <p class="mb-0 me-2"><strong>Chia sẻ trên:</strong></p>
-                                            <a href="" class="d-inline-block mx-2">
+                                            <a href="#" class="d-inline-block mx-2">
                                                 <img style="max-width: 25px"
                                                     src="{{ asset('images/icon/icon_facebook.svg') }}" alt="Facebook">
                                             </a>
-                                            <a href="" class="d-inline-block mx-2">
+                                            <a href="#" class="d-inline-block mx-2">
                                                 <img style="max-width: 25px" src="{{ asset('images/icon/icon_zalo.svg') }}"
                                                     alt="Zalo">
                                             </a>
-                                            <a href="" class="d-inline-block mx-2">
+                                            <a href="#" class="d-inline-block mx-2">
                                                 <img style="max-width: 25px" src="{{ asset('images/icon/icon_link.svg') }}"
                                                     alt="Link">
                                             </a>

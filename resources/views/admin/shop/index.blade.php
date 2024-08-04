@@ -34,6 +34,7 @@
                     @endforeach
                 </table>
             @endif
+            <a href="{{ route('admin.home') }}" class="btn btn-danger">Quay lại trang chủ admin</a>
         </div>
     </div>
 @endsection

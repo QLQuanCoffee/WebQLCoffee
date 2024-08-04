@@ -29,5 +29,6 @@
                 @endforeach
             @endif
         </table>
+        <a href="{{ route('admin.home') }}" class="btn btn-danger">Quay lại trang chủ admin</a>
     </div>
 @endsection

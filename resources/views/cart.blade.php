@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="content">
-                                    <a href="">Đổi phương thức</a>
+                                    <a href="#">Đổi phương thức</a>
                                 </div>
                             </div>
 

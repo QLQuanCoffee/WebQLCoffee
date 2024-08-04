@@ -172,7 +172,7 @@
         <input type="checkbox" name="" id="bar">
         <div class="header-menu-mini">
             <ul>
-                <li><a href="{{ route('shops') }}">Cà phê</a></li>
+                <li><a href="{{ route('products') }}">Cà phê</a></li>
                 <li><a href="{{ route('products') }}">Trà</a></li>
                 <li><a href="{{ route('products') }}">Menu</a></li>
                 <li><a href="{{ route('products') }}">Chuyện Nhà</a></li>

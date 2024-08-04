@@ -7,11 +7,11 @@
                     <div class="col-12">
                         <div class="list">
                             <ul>
-                                <li><a href="">Menu </a></li>
+                                <li><a href="#">Menu </a></li>
                                 <li>/</li>
-                                <li><a href="">Cà Phê </a></li>
+                                <li><a href="#">{{ $product->type->name }}</a></li>
                                 <li>/</li>
-                                <li><a href="">{{ $product->name }}</a></li>
+                                <li><a href="#">{{ $product->name }}</a></li>
                             </ul>
                         </div>
                     </div>

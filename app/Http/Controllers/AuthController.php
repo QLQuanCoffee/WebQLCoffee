@@ -69,7 +69,7 @@ class AuthController extends Controller
             'address'=>$request->get('address')
         ]);
 
-        $user=$this->user->getUser($request->get('email'));
+        $user=$this->user->getUserByEmail($request->get('email'));
         session()->put('id', $user->id);
         session()->put('name', $user->name);
         session()->put('email',$user->email);
