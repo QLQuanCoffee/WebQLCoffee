@@ -64,42 +64,5 @@
             <button type="submit" class="btn btn-primary">Sửa</button>
             <a href="{{ route('admin.type.index') }}" class="btn btn-danger">Huỷ</a>
         </form>
-        @if(!empty($detailToppings))
-            <h2>Topping đã thêm vào</h2>
-            <table class="table table-bordered">
-                <td><label class="form-label">Topping</label></td>
-                <td>
-                    <form method="post" action="{{ route('admin.detailToppingProduct.delete') }}" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <select class="form-control" name="topping_id">
-                            @foreach ($detailToppings as $topping)
-                                <option value="{{ $topping->topping_id }}">{{ $topping->topping->name }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-danger m-1">Delete</button>
-                    </form>
-                </td>
-            </table>
-        @endif
-
-        <h2 class="mt-5">Insert Topping</h2>
-        <form method="post" action="{{ route('admin.detailToppingProduct.insert') }}" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <table class="table table-bordered">
-                <tr>
-                    <td><label class="form-label">Name topping</label></td>
-                    <td>
-                        <select class="form-control" id="topping" name="topping_id">
-                            <?php foreach($toppings as $topping){?>
-                                <option value="<?php echo $topping->id?>"><?php echo $topping->name?></option>
-                            <?php } ?>
-                        </select>
-                        <button type="submit" class="btn btn-scbtn btn-primary m-1">Insert</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
     </div>
 @endsection

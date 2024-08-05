@@ -89,14 +89,6 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group( function () 
         Route::get('/delete/{id}', [ShopController::class, 'delete'])->name('delete');
     });
 
-    Route::prefix('topping')->name('topping.')->group(function () {
-        Route::get('/', [ToppingController::class, 'index'])->name('index');
-        Route::get('/insert', [ToppingController::class, 'insert'])->name('insert');
-        Route::post('/insert', [ToppingController::class, 'postInsert'])->name('postInsert');
-        Route::get('/update/{id}', [ToppingController::class, 'update'])->name('update');
-        Route::post('/update', [ToppingController::class, 'postUpdate'])->name('postUpdate');
-        Route::get('/delete/{id}', [ToppingController::class, 'delete'])->name('delete');
-    });
     Route::prefix('type')->name('type.')->group(function () {
         Route::get('/', [TypeController::class, 'index'])->name('index');
         Route::get('/insert', [TypeController::class, 'insert'])->name('insert');
@@ -113,10 +105,5 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group( function () 
         Route::get('/update/{id}', [UserController::class, 'update'])->name('update');
         Route::post('/update', [UserController::class, 'postUpdate'])->name('postUpdate');
         Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
-    });
-    Route::prefix('detailToppingProduct')->name('detailToppingProduct.')->group(function (){
-        Route::post('/insert', [DetailToppingProductController::class,'insert'])->name('insert');
-        Route::post('/delete', [DetailToppingProductController::class,'delete'])->name('delete');
-
     });
 });

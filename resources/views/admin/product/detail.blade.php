@@ -27,21 +27,6 @@
                     <td>{{ $product->type->name }}</td>
                 </tr>
             </table>
-
-            @if (count($detailToppings)>0)
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Tên loại topping</th>
-                        <th>Giá topping</th>
-                    </tr>
-                    @foreach ($detailToppings as $topping)
-                        <tr>
-                            <td>{{ $topping->topping->name }}</td>
-                            <td>{{ $topping->topping->price_format($topping->topping->price) }}</td>
-                        </tr>
-                    @endforeach
-                </table>
-                @endif
         @endif
         <a href="{{ route('admin.product.index') }}" class="btn btn-danger">Quay lại trang quản lý sản phẩm</a>
     </div>

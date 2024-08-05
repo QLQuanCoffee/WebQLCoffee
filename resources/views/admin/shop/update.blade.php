@@ -69,7 +69,7 @@
             </table>
             @csrf
             <button type="submit" class="btn btn-primary">Thêm</button>
-            <a href="{{ route('admin.type.index') }}" class="btn btn-danger">Huỷ</a>
+            <a href="{{ route('admin.shop.index') }}" class="btn btn-danger">Huỷ</a>
         </form>
     </div>
 @endsection

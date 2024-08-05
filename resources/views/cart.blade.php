@@ -134,19 +134,13 @@
                             @if (!empty($carts))
                                 @foreach ($carts as $cart)
                                     @php
-                                        $priceTopping = 0;
                                         $priceSize = 0;
                                         if ($cart->size == 'medium') {
                                             $priceSize = 6000;
                                         } else {
                                             $priceSize = 10000;
                                         }
-                                        foreach ($details as $detail) {
-                                            if ($detail->cart_id == $cart->id) {
-                                                $priceTopping += $detail->topping->price;
-                                            }
-                                        }
-                                        $sum += $cart->quantity * ($cart->product->price + $priceTopping);
+                                        $sum += $cart->quantity * $cart->product->price;
                                     @endphp
                                     <div class="col-12">
                                         <div class="row info-buy">
@@ -177,7 +171,7 @@
                                             <div class="col-md-4 text-right">
                                                 <div class="money">
                                                     <p class="price font-weight-bold text-success mb-0">
-                                                        {{ $cart->product->price_format($cart->quantity * ($cart->product->price + $priceTopping + $priceSize)) }}
+                                                        {{ $cart->product->price_format($cart->quantity * ($cart->product->price + $priceSize)) }}
                                                     </p>
                                                 </div>
                                             </div>

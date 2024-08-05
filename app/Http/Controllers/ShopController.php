@@ -16,13 +16,12 @@ use Illuminate\Support\Facades\Date;
 
 class ShopController extends Controller
 {
-    private $shop, $count, $order, $cart, $detailCartTopping, $orderDetail;
-    public function __construct(ShopInterface $shopInterface, OrderInterface $orderInterface, CartInterface $cartInterface, DetailCartToppingInterface $detailCartToppingInterface, OrderDetailInterface $orderDetailInterface)
+    private $shop, $count, $order, $cart, $orderDetail;
+    public function __construct(ShopInterface $shopInterface, OrderInterface $orderInterface, CartInterface $cartInterface, OrderDetailInterface $orderDetailInterface)
     {
         $this->shop = $shopInterface;
         $this->order=$orderInterface;
         $this->cart=$cartInterface;
-        $this->detailCartTopping=$detailCartToppingInterface;
         $this->orderDetail=$orderDetailInterface;
     }
     public function shops()
@@ -52,21 +51,11 @@ class ShopController extends Controller
         $order=$this->order->getLastOrderInsert();
         $total=0;
         foreach($carts as $cart){
-            $toppingPrice=0;
             $totalCart=0;
-            $listTopping='';
-            $toppings=$this->detailCartTopping->getDetailByCart($cart->id);
-            if(!empty($toppings)){
-                foreach($toppings as $topping){
-                    $toppingPrice+=$topping->quantity*$topping->topping->price;
-                    $listTopping.=$topping->topping->name.', ';
-                    $this->detailCartTopping->deleteDetailCartTopping($topping->id);
-                }
-            }
-            $totalCart=$cart->quantity*($toppingPrice + $cart->product->price);
+
+            $totalCart=$cart->quantity*$cart->product->price;
             $this->orderDetail->insertOrderDetail([
                 'quantity' => $cart->quantity,
-                'topping' => $listTopping,
                 'price' => $totalCart,
                 'size'=> $cart->size,
                 'product_id' => $cart->product_id,

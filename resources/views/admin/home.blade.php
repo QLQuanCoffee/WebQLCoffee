@@ -4,10 +4,6 @@
         <h2>Xin chào admin</h2>
         <table class="table table-bordered">
             <tr>
-                <td>Quản lý topping</td>
-                <td><a href="{{ route('admin.topping.index') }}">Topping</a></td>
-            </tr>
-            <tr>
                 <td>Quản lý loại sản phẩm</td>
                 <td><a href="{{ route('admin.type.index') }}">Loại sản phẩm</a></td>
             </tr>

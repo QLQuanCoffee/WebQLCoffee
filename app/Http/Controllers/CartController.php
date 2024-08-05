@@ -12,21 +12,18 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     private $product, $cart, $detailCartTopping, $detailToppingProduct, $user;
-    public function __construct(ProductInterface $productInterface, CartInterface $cartInterface, DetailCartToppingInterface $detailCartToppingInterface, DetailToppingProductInterface $detailToppingProductInterface, UserInterface $userInterface)
+    public function __construct(ProductInterface $productInterface, CartInterface $cartInterface, UserInterface $userInterface)
     {
         $this->user = $userInterface;
         $this->product = $productInterface;
         $this->cart = $cartInterface;
-        $this->detailCartTopping = $detailCartToppingInterface;
-        $this->detailToppingProduct = $detailToppingProductInterface;
     }
     public function index()
     {
         if (session()->get('id')) {
             $user = $this->user->getUser(session()->get('id'));
             $carts = $this->cart->getCartByUser(session()->get('id'));
-            $details = $this->detailCartTopping->getAllDetailCartToppings();
-            return view('cart', compact('carts', 'details', 'user'));
+            return view('cart', compact('carts', 'user'));
         }
         return redirect()->route('home');
     }
@@ -70,16 +67,6 @@ class CartController extends Controller
                     'product_id' => $request->get('product_id')
                 ]);
                 $cart = $this->cart->getCartByUserAndProductAndSize(session()->get('id'), $request->get('product_id'), $size);
-                $toppings = $this->detailToppingProduct->getDetailByProduct($cart->product_id);
-                foreach ($toppings as $i => $topping) {
-                    if (isset($request->get('toppings')[$i]) && $request->get('toppings')[$i] == 1) {
-                        $this->detailCartTopping->insertDetailCartTopping([
-                            'topping_id' => $topping->topping_id,
-                            'cart_id' => $cart->id,
-                            'quantity' => 1,
-                        ]);
-                    }
-                }
             }
             return redirect()->route('cart');
         }
