@@ -42,7 +42,7 @@
                 <div class="container">
                     <h3>Khám phá {{ $count }} cửa hàng của chúng tôi ở Tp Hồ Chí Minh</h3>
                     <div class="row">
-                        @foreach ($types as $shop)
+                        @foreach ($shops as $shop)
                             <div class="col-6">
                                 <div class="card w-100 mb-2">
                                     <img style="max-height: 270px" src="{{ asset('images/shops/' . $shop->photo) }}"

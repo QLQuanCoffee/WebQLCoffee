@@ -95,7 +95,7 @@
 
                             var startCoords = [nearestTarget.lat, nearestTarget.lon];
                             nearestLocation = nearestTarget;
-                            startMarker = L.marker(startCoords).addTo(map).bindPopup('Điểm khởi đầu: ' +
+                            startMarker = L.marker(startCoords).addTo(map).bindPopup('Cửa hàng: ' +
                                 nearestTarget.name).openPopup();
 
                             const routeUrl =
