@@ -137,7 +137,7 @@
                                         $priceSize = 0;
                                         if ($cart->size == 'medium') {
                                             $priceSize = 6000;
-                                        } else {
+                                        } else if ($cart->size == 'large'){
                                             $priceSize = 10000;
                                         }
                                         $sum += $cart->quantity * $cart->product->price;
