@@ -6,135 +6,223 @@
             <div class="col-12 col-md-5 mb-3">
                 <h2>Thông tin giao hàng</h2>
                 <p><strong>Địa chỉ giao hàng:</strong> {{ session('address') }}</p>
+                <div id="results"></div>
             </div>
             <div class="col-12 col-md-7">
                 <div class="card">
                     <div class="card-body">
                         <div id="map" style="height: 400px; width: 100%;"></div>
-                        <div id="saved-location-info" class="mt-3"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([0, 0], 13);
-        var startMarker, endMarker, routeLayer;
-        var nearestLocation = null;
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+        <script>
+            class PriorityQueue {
+                constructor() {
+                    this.elements = [];
+                }
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+                isEmpty() {
+                    return this.elements.length === 0;
+                }
 
-        const endpoint = {!! json_encode(session('address')) !!};
-        const targetLocations = @json($shops->pluck('address'));
+                enqueue(item, priority) {
+                    this.elements.push({
+                        item,
+                        priority
+                    });
+                    this.elements.sort((a, b) => a.priority - b.priority);
+                }
 
-        function findNearest(endpoint) {
+                dequeue() {
+                    return this.elements.shift().item;
+                }
+            }
 
-            if (endMarker) map.removeLayer(endMarker);
-            if (startMarker) map.removeLayer(startMarker);
-            if (routeLayer) map.removeLayer(routeLayer);
+            var map = L.map('map').setView([14.0583, 108.2772], 6);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-            var geocodeUrl =
-                `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(endpoint)}&format=json&limit=1&addressdetails=1&countrycodes=VN`;
+            const endpoint = {!! json_encode(session('address')) !!};
+            var arrayShop = @json($shops);
+            var addressShop = arrayShop.map(shop => shop.address);
+            addressShop.push(endpoint);
+            const matrixSize = addressShop.length;
+            var positions = createPosition(matrixSize);
+            var distancesMatrix = Array.from({
+                length: matrixSize
+            }, () => Array(matrixSize).fill(null));
+            var routes = {};
 
-            fetch(geocodeUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        alert('Không tìm thấy vị trí giao hàng. Vui lòng kiểm tra lại thông tin vị trí');
-                        return;
+            function createPosition(n) {
+                const positions = [];
+                for (let i = 0; i < n; i++) {
+                    for (let j = i + 1; j < n; j++) {
+                        positions.push([i, j]);
+                    }
+                }
+                return positions;
+            }
+
+            function fetchLocationData(address) {
+                const geocodeUrl =
+                    `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1&addressdetails=1&countrycodes=VN`;
+                return fetch(geocodeUrl)
+                    .then(response => response.json())
+                    .then(data => data.length ? {
+                        address: address,
+                        lat: data[0].lat,
+                        lon: data[0].lon
+                    } : {
+                        address: address,
+                        lat: null,
+                        lon: null
+                    });
+            }
+
+            function findRoute(start, end) {
+                const routeUrl =
+                    `https://router.project-osrm.org/route/v1/car/${start.lon},${start.lat};${end.lon},${end.lat}?overview=full&geometries=geojson`;
+                return fetch(routeUrl)
+                    .then(response => response.json())
+                    .then(data => data.routes.length ? {
+                        distance: data.routes[0].distance / 1000,
+                        geometry: data.routes[0].geometry.coordinates
+                    } : {
+                        distance: null,
+                        geometry: null
+                    });
+            }
+
+            async function calculateDistances(locations) {
+                for (let [i, j] of positions) {
+                    const routeData = await findRoute(locations[i], locations[j]);
+                    if (routeData.distance !== null) {
+                        distancesMatrix[i][j] = routeData.distance;
+                        distancesMatrix[j][i] = routeData.distance;
+                        routes[`${i}-${j}`] = routeData.geometry;
+                        routes[`${j}-${i}`] = routeData.geometry;
+                    }
+                }
+                return distancesMatrix;
+            }
+
+            function createGraph(addresses, matrix) {
+                const graph = {};
+                for (let i = 0; i < addresses.length; i++) {
+                    const address = addresses[i];
+                    graph[address] = {};
+                    for (let j = 0; j < addresses.length; j++) {
+                        if (i !== j && matrix[i][j] !== null) {
+                            graph[address][addresses[j]] = matrix[i][j];
+                        }
+                    }
+                }
+                return graph;
+            }
+
+            function dijkstra(graph, start) {
+                const distances = {};
+                const pq = new PriorityQueue();
+
+                for (let node in graph) {
+                    distances[node] = Infinity;
+                }
+                distances[start] = 0;
+
+                pq.enqueue(start, 0);
+
+                while (!pq.isEmpty()) {
+                    const currentNode = pq.dequeue();
+                    const currentDistance = distances[currentNode];
+
+                    if (currentDistance > distances[currentNode]) {
+                        continue;
                     }
 
-                    var endCoords = [data[0].lat, data[0].lon];
-                    endMarker = L.marker(endCoords).addTo(map).bindPopup('Nơi nhận hàng: ' + endpoint)
-                        .openPopup();
+                    for (let neighbor in graph[currentNode]) {
+                        const distance = currentDistance + graph[currentNode][neighbor];
+                        if (distance < distances[neighbor]) {
+                            distances[neighbor] = distance;
+                            pq.enqueue(neighbor, distance);
+                        }
+                    }
+                }
 
-                    const targetPromises = targetLocations.map(target => {
-                        var targetGeocodeUrl =
-                            `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(target)}&format=json&limit=1&addressdetails=1&countrycodes=VN`;
+                return distances;
+            }
 
-                        return fetch(targetGeocodeUrl)
-                            .then(response => response.json())
-                            .then(data => data.length ? {
-                                name: target,
-                                lat: data[0].lat,
-                                lon: data[0].lon
-                            } : null);
-                    });
+            function displayShortestPath(distances, endpoint, locations) {
+                const resultDiv = document.getElementById('results');
+                let nearestAddress = null;
+                let minDistance = Infinity;
 
-                    Promise.all(targetPromises).then(targets => {
-                        let shortestDistance = Infinity;
-                        let nearestTarget = null;
+                for (const [address, distance] of Object.entries(distances)) {
+                    if (address !== endpoint && distance < minDistance) {
+                        minDistance = distance;
+                        nearestAddress = address;
+                    }
+                }
 
-                        const distancePromises = targets.map(target => {
-                            if (!target) return null;
+                const endpointLocation = locations.find(loc => loc.address === endpoint);
+                const nearestLocation = locations.find(loc => loc.address === nearestAddress);
 
-                            const routeUrl =
-                                `https://router.project-osrm.org/route/v1/driving/${target.lon},${target.lat};${endCoords[1]},${endCoords[0]}?overview=false`;
+                if (endpointLocation && nearestLocation) {
+                    const endpointMarker = L.marker([endpointLocation.lat, endpointLocation.lon], {
+                            color: 'red'
+                        }).addTo(map)
+                        .bindPopup(`<b>Nơi nhận</b><br>${endpoint}`).openPopup();
+                    const nearestMarker = L.marker([nearestLocation.lat, nearestLocation.lon], {
+                            color: 'green'
+                        }).addTo(map)
+                        .bindPopup(`<b>Nơi giao hàng</b><br>${nearestAddress}`).openPopup();
 
-                            return fetch(routeUrl)
-                                .then(response => response.json())
-                                .then(data => {
-                                    const distance = data.routes[0].distance;
-                                    if (distance < shortestDistance) {
-                                        shortestDistance = distance;
-                                        nearestTarget = target;
-                                    }
-                                });
-                        });
+                    const routeKey = `${addressShop.indexOf(nearestAddress)}-${addressShop.indexOf(endpoint)}`;
+                    const routeCoordinates = routes[routeKey];
 
-                        Promise.all(distancePromises).then(() => {
-                            if (!nearestTarget) {
-                                alert('Không thể tìm thấy điểm gần nhất. Vui lòng thử lại.');
-                                return;
-                            }
+                    if (routeCoordinates) {
+                        const polyline = L.polyline(routeCoordinates.map(coord => [coord[1], coord[0]]), {
+                                color: 'blue'
+                            }).addTo(map)
+                            .bindPopup(`Khoảng cách: ${minDistance.toFixed(2)} km`).openPopup();
 
-                            var startCoords = [nearestTarget.lat, nearestTarget.lon];
-                            nearestLocation = nearestTarget;
-                            startMarker = L.marker(startCoords).addTo(map).bindPopup('Cửa hàng: ' +
-                                nearestTarget.name).openPopup();
+                        map.fitBounds(polyline.getBounds());
+                    }
+                }
 
-                            const routeUrl =
-                                `https://router.project-osrm.org/route/v1/driving/${startCoords[1]},${startCoords[0]};${endCoords[1]},${endCoords[0]}?geometries=geojson&overview=full`;
+                const resultHtml = `
+                    <p><strong>Cửa hàng gần nhất:</strong> ${nearestAddress}</p>
+                    <p><strong>Khoảng cách:</strong> ${minDistance.toFixed(2)} km</p>
+                `;
+                resultDiv.innerHTML = resultHtml;
+            }
 
-                            fetch(routeUrl)
-                                .then(response => response.json())
-                                .then(data => {
-                                    const route = data.routes[0];
-                                    routeLayer = L.geoJSON(route.geometry, {
-                                        style: {
-                                            color: 'blue',
-                                            weight: 4,
-                                            opacity: 0.7
-                                        }
-                                    }).addTo(map);
-                                    map.fitBounds(routeLayer.getBounds());
-                                })
-                                .catch(error => {
-                                    alert('Không thể tìm thấy đường đi. Vui lòng thử lại.');
-                                    console.error('Error:', error);
-                                });
-                        }).catch(error => {
-                            alert('Không tìm thấy địa điểm');
-                            console.error('Error:', error);
-                        });
-                    }).catch(error => {
-                        alert('Lỗi khi tìm kiếm tọa độ của các địa điểm mục tiêu.');
-                        console.error('Error:', error);
-                    });
-                })
-                .catch(error => {
-                    alert('Không tìm thấy nơi giao hàng');
-                    console.error('Error:', error);
-                });
-        }
+            function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
 
-        window.onload = function() {
-            findNearest(endpoint);
-        };
-    </script>
-@endsection
+            async function fetchAllLocationData(addresses) {
+                const results = [];
+                for (const address of addresses) {
+                    results.push(await fetchLocationData(address));
+                    await delay(2000);
+                }
+                return results;
+            }
+
+            (async () => {
+                try {
+                    const results = await fetchAllLocationData(addressShop);
+                    const matrix = await calculateDistances(results);
+                    const graph = createGraph(addressShop, matrix);
+                    const distances = dijkstra(graph, endpoint);
+                    displayShortestPath(distances, endpoint, results);
+                } catch (error) {
+                    console.error('Error fetching location data:', error);
+                }
+            })();
+        </script>
+    @endsection
