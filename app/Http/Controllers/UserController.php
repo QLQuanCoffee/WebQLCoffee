@@ -48,7 +48,7 @@ class UserController extends Controller
             'phone' =>$request->get('phone'),
             'password' => Hash::make($request->get('password')),
             'address'=>$request->get('address'),
-            'role' => 'user'
+            'role' => $request->get('role')
         ]);
         return redirect()->route('admin.user.index');
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
             'phone' =>!empty($request->get('phone')) ? $request->get('phone') : $user->phone,
             'password' => (!empty($request->get('password'))==true) ? Hash::make($request->get('password')) : $user->password,
             'address'=>$request->get('address'),
-            'role' => $user->role
+            'role' =>$request->get('role')
         ],$request->get('id'));
         return redirect()->route('admin.user.index');
     }
@@ -84,4 +84,5 @@ class UserController extends Controller
         $this->user->deleteUser($id);
         return redirect()->route('admin.user.index');
     }
+
 }

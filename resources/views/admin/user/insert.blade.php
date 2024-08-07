@@ -34,7 +34,11 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
                 @csrf
-
+                <p class="mt-1">Role</p>
+                <select class="form-control" id="role" name="role">
+                    <option value="user">user</option>
+                    <option value="staff">staff</option>
+                </select>
                 <div class="action mt-3 mb-4">
                     <button type="submit" class="btn btn-success">Lưu</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-danger">Huỷ</a>

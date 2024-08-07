@@ -36,6 +36,16 @@
                     @error('address')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
+                    <p class="mt-1">Role</p>
+                    <select class="form-control" id="role" name="role">
+                        @if($user->role=='user')
+                            <option value="user" selected>user</option>
+                            <option value="staff">staff</option>
+                        @else
+                            <option value="user">user</option>
+                            <option value="staff" selected>staff</option>
+                        @endif
+                    </select>
                     @csrf
 
                     <div class="action mt-3 mb-4">
