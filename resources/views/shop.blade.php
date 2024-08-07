@@ -45,8 +45,10 @@
                         @foreach ($shops as $shop)
                             <div class="col-6">
                                 <div class="card w-100 mb-2">
-                                    <img style="max-height: 270px" src="{{ asset('images/shops/' . $shop->photo) }}"
+                                    <a href="{{ route('detailShop',$shop->id) }}">
+                                        <img style="max-height: 270px" src="{{ asset('images/shops/' . $shop->photo) }}"
                                         class="card-img-top" alt="...">
+                                    </a>
                                     <div class="card-body">
                                         <h5 class="card-title">HCM SIGNATURE by The Coffee House</h5>
                                         <a href="#" class="btn w-100 text-danger" style="background: #f7fbd1">Xem

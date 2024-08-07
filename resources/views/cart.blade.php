@@ -140,7 +140,7 @@
                                         } else if ($cart->size == 'large'){
                                             $priceSize = 10000;
                                         }
-                                        $sum += $cart->quantity * $cart->product->price;
+                                        $sum += $cart->quantity * ($cart->product->price+$priceSize);
                                     @endphp
                                     <div class="col-12">
                                         <div class="row info-buy">

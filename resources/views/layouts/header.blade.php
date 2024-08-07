@@ -53,7 +53,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12 col-12">
-                <a class="link-logo" href="./index.html">
+                <a class="link-logo" href="{{ route('home') }}">
                     <div class="header_logo">
                         <img src="{{ asset('images/container/logo.png') }}" alt="">
                     </div>
