@@ -21,4 +21,8 @@ class OrderDetail extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+    public function price_format($price)
+    {
+        return number_format($price, 0, ',', '.') . 'vnđ';
+    }
 }

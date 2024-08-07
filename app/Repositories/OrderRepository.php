@@ -26,7 +26,9 @@ class OrderRepository implements  OrderInterface{
     }
     public function deleteOrder($id){
         $order=Order::find($id);
-        $order->delete();
+        if(!empty($order)){
+            $order->delete();
+        }
     }
     public function getLastOrderInsert(){
         return Order::latest()->first();

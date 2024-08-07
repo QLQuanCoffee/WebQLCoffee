@@ -26,7 +26,9 @@ class ProductRepository implements  ProductInterface{
     }
     public function deleteProduct($id){
         $product=Product::find($id);
-        $product->delete();
+        if(!empty($product)){
+            $product->delete();
+        }
     }
     public function getLastProductInsert(){
         return Product::latest()->first();

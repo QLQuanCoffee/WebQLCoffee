@@ -51,6 +51,8 @@ class CartRepository implements CartInterface
     public function deleteAllCart($idUser)
     {
         $carts = Cart::where('user_id', $idUser);
-        $carts->delete();
+        if(!empty($carts)){
+            $carts->delete();
+        }
     }
 }

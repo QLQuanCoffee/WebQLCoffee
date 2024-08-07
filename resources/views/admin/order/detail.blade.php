@@ -15,7 +15,6 @@
                     <tr>
                         <th>Ảnh</th>
                         <th>Tên</th>
-                        <th>Topping</th>
                         <th>Số lượng</th>
                         <th>Tổng tiền</th>
                     </tr>
@@ -25,9 +24,8 @@
                                 <img src="{{ asset('images/products/' . $detail->product->photo . '') }}" style="height: 50px" alt="">
                             </td>
                             <td><a href="{{ route('detail', $detail->id) }}">{{ $detail->product->name }}</a></td>
-                            <td>{{ $detail->topping }}</td>
                             <td>{{ $detail->quantity }}</td>
-                            <td>{{ $detail->price }}</td>
+                            <td>{{ $detail->price_format($detail->price) }}</td>
                         </tr>
                     @endforeach
                 </table>

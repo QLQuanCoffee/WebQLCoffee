@@ -24,6 +24,8 @@ class ShopRepository implements  ShopInterface{
     }
     public function deleteShop($id){
         $shop=Shop::find($id);
-        $shop->delete();
+        if(!empty($shop)){
+            $shop->delete();
+        }
     }
 }

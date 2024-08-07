@@ -31,7 +31,9 @@ class OrderDetailRepository implements OrderDetailInterface
     }
     public function deleteOrderDetail($id)
     {
-        $orderDetail = OrderDetail::where('id', $id)->get();
-        $orderDetail->delete();
+        $orderDetail = OrderDetail::where('order_id', $id)->get();
+        if(!empty($orderDetail)){
+            $orderDetail->delete();
+        }
     }
 }

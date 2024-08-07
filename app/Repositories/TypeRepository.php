@@ -19,6 +19,8 @@ class TypeRepository implements  TypeInterface{
     }
     public function deleteType($id){
         $type=Type::find($id);
-        $type->delete();
+        if(!empty($type)){
+            $type->delete();
+        }
     }
 }
