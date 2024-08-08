@@ -44,9 +44,9 @@
 | 3   | Quản lý user                | Tâm       |
 | 4   | Quản lý loại sản phẩm       | Tâm       |
 | 5   | Quản lý đơn hàng            | Tâm       |
-| 6   | Quản lý cửa hàng            | Tâm       |
-| 7   | Giỏ hàng                    | Tâm       |
-| 8   | Thanh toán                  | Tâm       |
+| 6   | Quản lý cửa hàng            | Tâm, Đức  |
+| 7   | Giỏ hàng                    | Tâm, Đức  |
+| 8   | Thanh toán                  | Tâm, Đức  |
 | 9   | Map                         | Đức       |
 | 10  | AI: Tìm đường đi ngắn nhất  | Tâm, Đức  |
 
@@ -55,7 +55,7 @@
 
 | STT | Nghiệp vụ           | Phân công |
 | --- | ------------------- | --------- |
-| 1   | Đăng nhập/đăng xuất | Đức       |
+| 1   | Đăng nhập/đăng xuất | Đức,Tâm   |
 | 2   | Chọn sản phẩm       | Đức       |
 | 3   | Thanh toán          | Đức       |
 | 4   | Danh sách sản phẩm  | Đức       |
