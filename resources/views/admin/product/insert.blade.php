@@ -17,7 +17,7 @@
                 <tr>
                     <td><label class="form-label">Giá</label></td>
                     <td>
-                        <input type="text" class="form-control" id="" placeholder="Tên topping" name="price"
+                        <input type="text" class="form-control" id="" placeholder="Giá sản phẩm" name="price"
                             value="{{ old('price') }}" />
                         @error('price')
                             <span class="text-danger">{{ $message }}</span>
@@ -63,5 +63,4 @@
         </form>
         <a href="{{ route('admin.product.index') }}" class="btn btn-danger">Huỷ</a>
     </div>
-
 @endsection

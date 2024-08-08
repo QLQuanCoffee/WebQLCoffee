@@ -56,7 +56,7 @@
                 length: matrixSize
             }, () => Array(matrixSize).fill(null));
             var routes = {};
-
+            //tạo mảng 2 chiều
             function createPosition(n) {
                 const positions = [];
                 for (let i = 0; i < n; i++) {
@@ -66,7 +66,7 @@
                 }
                 return positions;
             }
-
+            //lấy vị trí
             function fetchLocationData(address) {
                 const geocodeUrl =
                     `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1&addressdetails=1&countrycodes=VN`;
@@ -82,7 +82,7 @@
                         lon: null
                     });
             }
-
+            //tìm đường đi
             function findRoute(start, end) {
                 const routeUrl =
                     `https://router.project-osrm.org/route/v1/car/${start.lon},${start.lat};${end.lon},${end.lat}?overview=full&geometries=geojson`;
@@ -96,7 +96,7 @@
                         geometry: null
                     });
             }
-
+            //tạo mảng 2 chiều
             async function calculateDistances(locations) {
                 for (let [i, j] of positions) {
                     const routeData = await findRoute(locations[i], locations[j]);
@@ -109,7 +109,7 @@
                 }
                 return distancesMatrix;
             }
-
+            //Chuyển thành đồ thị
             function createGraph(addresses, matrix) {
                 const graph = {};
                 for (let i = 0; i < addresses.length; i++) {
@@ -123,7 +123,7 @@
                 }
                 return graph;
             }
-
+            //thuật toán
             function dijkstra(graph, start) {
                 const distances = {};
                 const pq = new PriorityQueue();
@@ -154,7 +154,7 @@
 
                 return distances;
             }
-
+            //tính đường đi ngắn nhất
             function displayShortestPath(distances, endpoint, locations) {
                 const resultDiv = document.getElementById('results');
                 let nearestAddress = null;

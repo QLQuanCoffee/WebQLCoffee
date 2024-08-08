@@ -29,18 +29,20 @@ class CartController extends Controller
     }
     public function saveAddress(Request $request)
     {
-        $request->validate([
-            'address_option' => 'required|in:existing,new',
-            'address' => 'nullable|string|max:255',
-        ]);
-        $address = '';
-        $user = $this->user->getUser(session()->get('id'));
-        if ($request->address_option == 'new') {
-            $address = $request->address;
-        } else {
-            $address = $user->address;
+        if (!empty($request->get('address'))) {
+            $request->validate([
+                'address_option' => 'required|in:existing,new',
+                'address' => 'nullable|string|max:255',
+            ]);
+            $address = '';
+            $user = $this->user->getUser(session()->get('id'));
+            if ($request->address_option == 'new') {
+                $address = $request->address;
+            } else {
+                $address = $user->address;
+            }
+            session(['address' => $address]);
         }
-        session(['address' => $address]);
         return redirect()->route('delivery');
     }
 
