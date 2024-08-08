@@ -1,9 +1,5 @@
 # Thành viên
 
-<h4>Tên nhóm: Sea  </h4>
-
-> > **Thầy Bùi Công Danh**
-
 | STT | Họ tên               | Chức vụ     |
 | --- | -------------------- | ----------- |
 | 1   | Nguyễn Văn Hoàng Tâm | Nhóm trưởng |
